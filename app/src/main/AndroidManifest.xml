@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="edu.aku.hassannaqvi.sewage_sample">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.hardware.location.gps" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" /> -->
+    <uses-permission
+        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- TakePhoto Permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:name="edu.aku.hassannaqvi.sewage_sample.core.MainApp"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:logo="@drawable/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup"
+        tools:targetApi="m">
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.list_activity.FormsReportCluster"
+            android:exported="false"
+            android:label="Forms Report"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.list_activity.FormsReportDate"
+            android:exported="false"
+            android:label="Forms Report"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.other.SplashscreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.login_activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFAActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFBActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFCActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.core.AndroidDatabaseManager"
+            android:exported="false"
+            android:parentActivityName="edu.aku.hassannaqvi.sewage_sample.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="edu.aku.hassannaqvi.sewage_sample.ui.SyncActivity"
+            android:exported="false"
+            android:parentActivityName="edu.aku.hassannaqvi.sewage_sample.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <service android:name="edu.aku.hassannaqvi.sewage_sample.utils.DownloadFileService" />
+    </application>
+
+</manifest>

@@ -1,0 +1,378 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:typeface">sans</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppThemeEnglish" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:scrollViewStyle">@style/BackgroundStyle</item>
+        <!--<item name="spinnerStyle">@style/spinner</item>-->
+        <item name="android:actionBarStyle">@style/topBarStyle</item>
+        <item name="android:textViewStyle">@style/labels</item>
+        <item name="editTextStyle">@style/textInput</item>
+        <item name="radioButtonStyle">@style/radiobutton</item>
+        <item name="checkboxStyle">@style/checkbox</item>
+        <item name="hintEnabled">false</item>
+        <item name="buttonStyle">@style/button</item>
+        <item name="android:textColorHint">@color/grayOverlay</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fillAfter">true</item>
+        <item name="android:enterFadeDuration">600</item>
+        <item name="android:exitFadeDuration">200</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:animateLayoutChanges">false</item>
+    </style>
+
+    <style name="AppThemeUrdu" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:scrollViewStyle">@style/BackgroundStyle</item>
+        <!--<item name="spinnerStyle">@style/spinner</item>-->
+        <item name="android:actionBarStyle">@style/topBarStyle</item>
+        <item name="android:textViewStyle">@style/labels</item>
+        <item name="editTextStyle">@style/textInput</item>
+        <item name="radioButtonStyle">@style/radiobutton</item>
+        <item name="checkboxStyle">@style/checkbox</item>
+        <item name="hintEnabled">false</item>
+        <item name="buttonStyle">@style/button</item>
+        <item name="android:textColorHint">@color/grayOverlay</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:fillAfter">true</item>
+        <item name="android:enterFadeDuration">600</item>
+        <item name="android:exitFadeDuration">200</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:animateLayoutChanges">false</item>
+    </style>
+
+
+    <style name="BackgroundStyle" parent="android:Widget.ScrollView">
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">20dp</item>
+    </style>
+
+    <style name="topBarStyle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+
+        <item name="android:typeface">sans</item>
+        <item name="android:textViewStyle">@style/actionBarText</item>
+        <item name="android:fontFamily">fonts/MBLateefi</item>
+
+    </style>
+
+    <style name="actionBarText" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+
+    <!--        <item name="android:textColor">@color/colorPrimary</item>
+            <item name="android:padding">16dp</item>-->
+
+    <style name="labels" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:minHeight">65dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Headline</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="sub_labels">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">@drawable/sub_labels_separator</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="textView3Head">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textInput">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:background">@drawable/options_separator</item>
+        <item name="android:textColor">@color/blackOverlay</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+
+        <!--
+                <item name="android:textStyle">bold</item>
+        -->
+        <!--        <item name="android:textDirection">ltr</item>-->
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="radiobutton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:radius">2dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="checkbox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/options_separator</item>
+    </style>
+
+    <style name="button" parent="Widget.AppCompat.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:radius">2dp</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@color/gray</item>
+        <!--        <item name="android:background">@drawable/background_grad</item>-->
+    </style>
+
+    <style name="spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#ff0000</item>
+        <item name="android:background">#efefef</item>
+        <item name="android:drawable">@drawable/ic_arroww</item>
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
+    </style>
+
+
+    <style name="spinner1" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/spinner_style</item>
+        <!--<item name="android:padding">8dp</item>-->
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:spinnersShown">false</item>
+    </style>
+
+
+    <style name="spinner2" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/spinner_style</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:spinnersShown">true</item>
+    </style>
+
+    <style name="spinnerDropDownItemStyle">
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="spinnerItemStyle">
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:text">SpinnerItemText</item>
+    </style>
+
+
+    <style name="SpinnerItemText">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="CustomShowcaseTheme" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#33b78ff7</item>
+        <item name="sv_showcaseColor">@color/colorPrimaryDark</item>
+        <item name="sv_buttonText">OK</item>
+        <item name="sv_titleTextAppearance">@style/CustomTitle</item>
+        <item name="sv_detailTextAppearance">@style/CustomTitle</item>
+    </style>
+
+    <style name="CustomTitle" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppThemeUrdu">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+
+    <!--Card View Start-->
+    <style name="cardView" parent="CardView.Light">
+        <!--
+                <item name="android:background">@color/white</item>
+        -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@color/grayOverlay</item>
+
+        <!--<item name="android:layout_marginRight">10dp</item>-->
+        <!--<item name="android:layout_marginLeft">10dp</item>-->
+        <item name="android:radius">12dp</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="vlinearlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/blackOverlay</item>
+    </style>
+
+    <style name="EditTextAlpha" parent="@style/textInput">
+        <item name="android:digits">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:radius">8dp</item>
+
+        <!--        <item name="android:textDirection">ltr</item>-->
+
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="quesNum">
+        <item name="android:background">@color/colorSecondary</item>
+        <item name="android:textColor">@color/grayLight</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+    </style>
+
+    <style name="info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">#FFEB9C</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="sub">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textView">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/whiteOverlay</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="textViewIntro">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingStart">24dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:background">@color/whiteOverlay</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="expandCollapse">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Summary_Layout" parent="Theme.AppCompat.Light.DarkActionBar"></style>
+
+</resources>

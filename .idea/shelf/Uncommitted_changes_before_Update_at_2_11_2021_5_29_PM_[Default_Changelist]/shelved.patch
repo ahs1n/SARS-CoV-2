@@ -1,0 +1,137 @@
+Index: app/src/main/java/edu/aku/hassannaqvi/casi_register/ui/sections/Section01CS1Activity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.aku.hassannaqvi.casi_register.ui.sections;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.text.Editable;\r\nimport android.text.TextUtils;\r\nimport android.text.TextWatcher;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.validatorcrawler.aliazaz.Clear;\r\nimport com.validatorcrawler.aliazaz.Validator;\r\n\r\nimport org.apache.commons.lang3.StringUtils;\r\nimport org.json.JSONObject;\r\nimport org.threeten.bp.Instant;\r\nimport org.threeten.bp.LocalDate;\r\nimport org.threeten.bp.LocalDateTime;\r\nimport org.threeten.bp.ZoneId;\r\n\r\nimport java.text.ParseException;\r\nimport java.text.SimpleDateFormat;\r\nimport java.util.Date;\r\nimport java.util.List;\r\nimport java.util.Locale;\r\nimport java.util.Map;\r\nimport java.util.Objects;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.databinding.DataBindingUtil;\r\nimport edu.aku.hassannaqvi.casi_register.R;\r\nimport edu.aku.hassannaqvi.casi_register.contracts.FormsContract;\r\nimport edu.aku.hassannaqvi.casi_register.core.DatabaseHelper;\r\nimport edu.aku.hassannaqvi.casi_register.core.MainApp;\r\nimport edu.aku.hassannaqvi.casi_register.core.ZScore;\r\nimport edu.aku.hassannaqvi.casi_register.databinding.ActivitySection01Cs1Binding;\r\nimport edu.aku.hassannaqvi.casi_register.models.Form;\r\nimport edu.aku.hassannaqvi.casi_register.models.HealthFacility;\r\nimport edu.aku.hassannaqvi.casi_register.ui.MainActivity;\r\nimport edu.aku.hassannaqvi.casi_register.utils.AppUtilsKt;\r\nimport edu.aku.hassannaqvi.casi_register.utils.EndSectionActivity;\r\nimport edu.aku.hassannaqvi.casi_register.utils.datecollection.AgeModel;\r\nimport edu.aku.hassannaqvi.casi_register.utils.datecollection.DateRepository;\r\nimport edu.aku.hassannaqvi.casi_register.utils.shared.SharedStorage;\r\n\r\nimport static edu.aku.hassannaqvi.casi_register.CONSTANTS.DAYS_IN_A_MONTH;\r\nimport static edu.aku.hassannaqvi.casi_register.core.MainApp.form;\r\n\r\npublic class Section01CS1Activity extends AppCompatActivity implements EndSectionActivity {\r\n\r\n    ActivitySection01Cs1Binding bi;\r\n    boolean dtFlag = false;\r\n    LocalDate calculatedDOB;\r\n    LocalDate localDate;\r\n    List<String> regionName, districtName, ucName, villageName;\r\n    List<HealthFacility> facilityList;\r\n    Map<String, HealthFacility> facilityMap;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        bi = DataBindingUtil.setContentView(this, R.layout.activity_section01_cs1);\r\n        bi.setCallback(this);\r\n        setListeners();\r\n        setupContent();\r\n        setUIContent();\r\n    }\r\n\r\n    private void setupContent() {\r\n        String regID = SharedStorage.INSTANCE.getLastRegistrationID(this, \"f-\" + MainApp.mainInfo.getVillage_code());\r\n        if (!regID.equals(StringUtils.EMPTY)) bi.cs10.setText(regID);\r\n        else bi.cs10.setText(MainApp.mainInfo.getVillage_code());\r\n    }\r\n\r\n    /*\r\n     * Save functions\r\n     * */\r\n    private boolean updateDB() {\r\n\r\n        DatabaseHelper db = MainApp.appInfo.getDbHelper();\r\n        long rowid = db.addForm(form);\r\n        form.set_ID(String.valueOf(rowid));\r\n        if (rowid > 0) {\r\n            form.set_UID(form.getDeviceID() + form.get_ID());\r\n            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());\r\n            return true;\r\n        } else {\r\n            Toast.makeText(this, \"Updating Database... ERROR!\", Toast.LENGTH_SHORT).show();\r\n            return false;\r\n        }\r\n    }\r\n\r\n    private void saveDraft() {\r\n\r\n        form = new Form();\r\n        form.setSysdate(new SimpleDateFormat(\"dd-MM-yyyy HH:mm:ss\", Locale.ENGLISH).format(new Date().getTime()));\r\n        form.setUsername(MainApp.user.getUserName());\r\n        form.setDeviceID(MainApp.appInfo.getDeviceID());\r\n        form.setDevicetagID(MainApp.appInfo.getTagName());\r\n        form.setAppversion(MainApp.appInfo.getAppVersion());\r\n\r\n        form.setCountry(MainApp.mainInfo.getCountry());\r\n        form.setDistrict(MainApp.mainInfo.getDistrict());\r\n        form.setUc(MainApp.mainInfo.getUc());\r\n        form.setVillage(MainApp.mainInfo.getVillage_code());\r\n        form.setCountryCode(MainApp.mainInfo.getCountry_code());\r\n        form.setDistrictCode(MainApp.mainInfo.getDistrict_code());\r\n        form.setUcCode(MainApp.mainInfo.getUc_code());\r\n        form.setVillageCode(MainApp.mainInfo.getVillage_code());\r\n\r\n        form.setLocalDate(localDate);\r\n\r\n        JSONObject cS = new JSONObject();\r\n\r\n        form.setCs02(bi.cs0201.isChecked() ? \"1\"\r\n                : bi.cs0202.isChecked() ? \"2\"\r\n                : bi.cs0203.isChecked() ? \"3\"\r\n                : \"-1\");\r\n\r\n        form.setCs03(bi.cs03.getSelectedItem().toString());\r\n\r\n        form.setCs05a(bi.cs05a.getText().toString());\r\n\r\n        form.setCs06(bi.cs0601.isChecked() ? \"1\"\r\n                : bi.cs0602.isChecked() ? \"2\"\r\n                : bi.cs0603.isChecked() ? \"3\"\r\n                : bi.cs0604.isChecked() ? \"4\"\r\n                : bi.cs0605.isChecked() ? \"5\"\r\n                : bi.cs06096.isChecked() ? \"96\"\r\n                : \"-1\");\r\n        form.setCs06096x(bi.cs06096x.getText().toString());\r\n\r\n        form.setCs07(bi.cs07.getText().toString());\r\n        form.setCs07User(bi.cs07User.getText().toString());\r\n\r\n        form.setCs08(bi.cs08.getText().toString());\r\n\r\n        form.setCs0801(bi.cs0801.getText().toString());\r\n\r\n        form.setCs0802(bi.cs0802.getText().toString());\r\n\r\n        form.setCs0803(bi.cs0803.getText().toString());\r\n\r\n        form.setCs09(bi.cs09.getText().toString());\r\n\r\n        form.setCs10(bi.cs10.getText().toString());\r\n\r\n        form.setCs10a(bi.cs10a.getText().toString());\r\n\r\n        form.setCs11(bi.cs11.getText().toString());\r\n\r\n        form.setCs11a(bi.cs11a.getText().toString());\r\n\r\n        form.setCs12(bi.cs12.getText().toString());\r\n\r\n        form.setCs12a(bi.cs12a.getText().toString());\r\n\r\n        form.setCs13(bi.cs1301.isChecked() ? \"1\"\r\n                : bi.cs1302.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs1401(bi.cs1401.getText().toString());\r\n\r\n        form.setCs1402(bi.cs1402.getText().toString());\r\n\r\n        form.setCs1403(bi.cs1403.getText().toString());\r\n\r\n        form.setCs1501(bi.cs1501.getText().toString());\r\n\r\n        form.setCs1502(bi.cs1502.getText().toString());\r\n\r\n        form.setCs16(bi.cs16.getText().toString());\r\n\r\n        form.setCs1698(bi.cs1698.isChecked() ? \"98\" : \"-1\");\r\n\r\n\r\n        form.setCs17(bi.cs1701.isChecked() ? \"1\"\r\n                : bi.cs1702.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs18(bi.cs1801.isChecked() ? \"1\"\r\n                : bi.cs1802.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs19(bi.cs1901.isChecked() ? \"1\"\r\n                : bi.cs1902.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs20a(bi.cs20a01.isChecked() ? \"1\"\r\n                : bi.cs20a02.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs20b(bi.cs20b01.isChecked() ? \"1\"\r\n                : bi.cs20b02.isChecked() ? \"2\"\r\n                : \"-1\");\r\n\r\n        form.setCs21(bi.cs21.getText().toString());\r\n\r\n        form.setCs22(bi.cs22.getText().toString());\r\n\r\n        form.setCs23(bi.cs23.getText().toString());\r\n\r\n        form.setCs2401(bi.cs2401.isChecked() ? \"1\" : \"-1\");\r\n\r\n        form.setCs2402(bi.cs2402.isChecked() ? \"2\" : \"-1\");\r\n\r\n        form.setCs2403(bi.cs2403.isChecked() ? \"3\" : \"-1\");\r\n\r\n        form.setCs2404(bi.cs2404.isChecked() ? \"4\" : \"-1\");\r\n\r\n        form.setCs2405(bi.cs2405.isChecked() ? \"5\" : \"-1\");\r\n\r\n        form.setCs2406(bi.cs2406.isChecked() ? \"6\" : \"-1\");\r\n\r\n        form.setCs25(bi.cs2501.isChecked() ? \"1\"\r\n                : bi.cs2502.isChecked() ? \"2\"\r\n                : bi.cs2503.isChecked() ? \"3\"\r\n                : bi.cs2504.isChecked() ? \"4\"\r\n                : \"-1\");\r\n\r\n        form.setCs25a01(bi.cs25a01.getText().toString());\r\n\r\n        form.setCs25b01(bi.cs25b01.getText().toString());\r\n\r\n        form.setCs25c(bi.cs25c01.isChecked() ? \"1\"\r\n                : bi.cs25c02.isChecked() ? \"2\"\r\n                : bi.cs25c096.isChecked() ? \"96\"\r\n                : \"-1\");\r\n        form.setCs25c096x(bi.cs25c096x.getText().toString());\r\n\r\n        form.setCs2601(bi.cs2601.isChecked() ? \"1\" : \"-1\");\r\n\r\n        form.setCs2602(bi.cs2602.isChecked() ? \"2\" : \"-1\");\r\n\r\n        form.setCs2603(bi.cs2603.isChecked() ? \"3\" : \"-1\");\r\n\r\n        form.setCs2604(bi.cs2604.isChecked() ? \"4\" : \"-1\");\r\n\r\n        form.setCs2605(bi.cs2605.isChecked() ? \"5\" : \"-1\");\r\n\r\n        form.setCs2701(bi.cs2701.getText().toString());\r\n\r\n        form.setCs2702(bi.cs2702.getText().toString());\r\n\r\n        form.setCs2703(bi.cs2703.getText().toString());\r\n\r\n        form.setCs2704(bi.cs2704.getText().toString());\r\n\r\n        form.setcS((String.valueOf(cS)));\r\n\r\n    }\r\n\r\n    private boolean formValidation() {\r\n        if (!Validator.emptyCheckingContainer(this, bi.GrpName))\r\n            return false;\r\n        if (!dtFlag) {\r\n            return Validator.emptyCustomTextBox(this, bi.cs1403, \"Invalid date!\");\r\n        }\r\n        if (Integer.parseInt(bi.cs1502.getText().toString()) == 0 && Integer.parseInt(bi.cs1501.getText().toString()) == 0)\r\n            return Validator.emptyCustomTextBox(this, bi.cs1501, \"Both Month & Year don't be zero!!\", false);\r\n        return true;\r\n    }\r\n\r\n    private void setUIContent() {\r\n\r\n        //HealthFacility\r\n        bi.cs03.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {\r\n            @Override\r\n            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {\r\n                for (HealthFacility item : facilityList) {\r\n                    if (item.getRegion().equals(bi.cs03.getSelectedItem().toString()) && !districtName.contains(item.getDistrict())) {\r\n                        districtName.add(item.getDistrict());\r\n                        facilityMap.put(item.getDistrict(), item);\r\n                    }\r\n                }\r\n                bi.cs03.setAdapter(new ArrayAdapter<>(Section01CS1Activity.this, android.R.layout.simple_spinner_dropdown_item, districtName));\r\n            }\r\n\r\n            @Override\r\n            public void onNothingSelected(AdapterView<?> adapterView) {\r\n\r\n            }\r\n        });\r\n    }\r\n\r\n    /*\r\n     * Watch listeners\r\n     * */\r\n    private void setListeners() {\r\n\r\n        EditText[] txtListener = new EditText[]{bi.cs1401, bi.cs1402};\r\n        for (EditText txtItem : txtListener) {\r\n\r\n            txtItem.addTextChangedListener(new TextWatcher() {\r\n                @Override\r\n                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {\r\n\r\n                }\r\n\r\n                @Override\r\n                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {\r\n                    //Clear.clearAllFields(bi.fldGrpCVcs15);\r\n                    bi.cs1502.setText(null);\r\n                    bi.cs1501.setText(null);\r\n                }\r\n\r\n                @Override\r\n                public void afterTextChanged(Editable editable) {\r\n\r\n                }\r\n            });\r\n        }\r\n\r\n        bi.cs2401.setOnCheckedChangeListener((compoundButton, b) -> {\r\n            if (b) {\r\n                Clear.clearAllFields(bi.cs24check, false);\r\n                Clear.clearAllFields(bi.fldGrpcs2401);\r\n                bi.fldGrpcs2401.setVisibility(View.GONE);\r\n            } else {\r\n                Clear.clearAllFields(bi.cs24check, true);\r\n                bi.fldGrpcs2401.setVisibility(View.VISIBLE);\r\n            }\r\n        });\r\n\r\n        bi.cs25.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpcs2501));\r\n\r\n        bi.cs2605.setOnCheckedChangeListener((compoundButton, b) -> Clear.clearAllFields(bi.cs26check, !b));\r\n\r\n\r\n        bi.cs07User.setOnCheckedChangeListener((compoundButton, b) -> {\r\n            if (b) {\r\n                bi.cs07.setEnabled(false);\r\n                bi.cs07.setText(null);\r\n            } else\r\n                bi.cs07.setEnabled(true);\r\n        });\r\n    }\r\n\r\n    public void cs15yOnTextChanged(CharSequence s, int start, int before, int count) {\r\n        if (TextUtils.isEmpty(bi.cs1501.getText().toString()) || TextUtils.isEmpty(bi.cs1502.getText().toString()))\r\n            return;\r\n\r\n        if (!bi.cs1502.isRangeTextValidate() || !bi.cs1501.isRangeTextValidate())\r\n            return;\r\n        int age = Integer.parseInt(bi.cs1502.getText().toString()) + (Integer.parseInt(bi.cs1501.getText().toString()) * 12);\r\n\r\n        if (age != 0) {\r\n            bi.fldGrpCVcs18.setVisibility(View.GONE);\r\n            bi.fldGrpCVcs19.setVisibility(View.GONE);\r\n            bi.fldGrpCVcs20a.setVisibility(View.GONE);\r\n            bi.fldGrpCVcs20b.setVisibility(View.GONE);\r\n\r\n            if (age >= 6) {\r\n                bi.fldGrpCVcs18.setVisibility(View.GONE);\r\n            } else bi.fldGrpCVcs18.setVisibility(View.VISIBLE);\r\n\r\n            if (age < 6 || age >= 24) {\r\n                bi.fldGrpCVcs19.setVisibility(View.GONE);\r\n                bi.fldGrpCVcs20b.setVisibility(View.GONE);\r\n            } else {\r\n                bi.fldGrpCVcs19.setVisibility(View.VISIBLE);\r\n                bi.fldGrpCVcs20b.setVisibility(View.VISIBLE);\r\n            }\r\n\r\n            if (age >= 24) {\r\n                bi.fldGrpCVcs20a.setVisibility(View.GONE);\r\n            } else bi.fldGrpCVcs20a.setVisibility(View.VISIBLE);\r\n        }\r\n    }\r\n\r\n    public void cs14ddmmOnTextChanged(CharSequence s, int start, int before, int count) {\r\n        bi.cs1403.setText(null);\r\n    }\r\n\r\n    public void cs08OnTextChanged(CharSequence s, int start, int before, int count) {\r\n        localDate = null;\r\n        if (TextUtils.isEmpty(bi.cs08.getText()))\r\n            return;\r\n\r\n        //Setting Date\r\n        try {\r\n            Instant instant = Instant.parse(new SimpleDateFormat(\"yyyy-MM-dd\", Locale.ENGLISH).format(new SimpleDateFormat(\"dd-MM-yyyy\", Locale.ENGLISH).parse(\r\n                    bi.cs08.getText().toString()\r\n            )) + \"T06:24:01Z\");\r\n            localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();\r\n        } catch (ParseException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public void cs14yOnTextChanged(CharSequence s, int start, int before, int count) {\r\n        bi.cs1502.setEnabled(false);\r\n        bi.cs1502.setText(null);\r\n        bi.cs1501.setEnabled(false);\r\n        bi.cs1501.setText(null);\r\n        calculatedDOB = null;\r\n        if (TextUtils.isEmpty(bi.cs1401.getText()) || TextUtils.isEmpty(bi.cs1402.getText()) || TextUtils.isEmpty(bi.cs1403.getText()))\r\n            return;\r\n        if (!bi.cs1401.isRangeTextValidate() || !bi.cs1402.isRangeTextValidate() || !bi.cs1403.isRangeTextValidate())\r\n            return;\r\n        if (bi.cs1401.getText().toString().equals(\"98\") && bi.cs1402.getText().toString().equals(\"98\") && bi.cs1403.getText().toString().equals(\"9998\")) {\r\n            bi.cs1502.setEnabled(true);\r\n            bi.cs1501.setEnabled(true);\r\n            dtFlag = true;\r\n            return;\r\n        }\r\n        int day = bi.cs1401.getText().toString().equals(\"00\") ? 0 : Integer.parseInt(bi.cs1401.getText().toString());\r\n        int month = Integer.parseInt(bi.cs1402.getText().toString());\r\n        int year = Integer.parseInt(bi.cs1403.getText().toString());\r\n\r\n        AgeModel age;\r\n        if (localDate != null)\r\n            age = DateRepository.Companion.getCalculatedAge(localDate, year, month, day);\r\n        else\r\n            age = DateRepository.Companion.getCalculatedAge(year, month, day);\r\n        if (age == null) {\r\n            bi.cs1403.setError(\"Invalid date!\");\r\n            dtFlag = false;\r\n            return;\r\n        }\r\n        dtFlag = true;\r\n        bi.cs1502.setText(String.valueOf(age.getMonth()));\r\n        bi.cs1501.setText(String.valueOf(age.getYear()));\r\n\r\n        //Setting Date\r\n        try {\r\n            Instant instant = Instant.parse(new SimpleDateFormat(\"yyyy-MM-dd\", Locale.ENGLISH).format(Objects.requireNonNull(new SimpleDateFormat(\"dd-MM-yyyy\", Locale.ENGLISH).parse(\r\n                    bi.cs1401.getText().toString() + \"-\" + bi.cs1402.getText().toString() + \"-\" + bi.cs1403.getText().toString()\r\n            ))) + \"T06:24:01Z\");\r\n            calculatedDOB = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();\r\n        } catch (ParseException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n\r\n    /*\r\n     * Click events\r\n     * */\r\n    public void CheckZScore(View view) {\r\n        if (!bi.cs1501.getText().toString().equals(\"\")\r\n                && !bi.cs1502.getText().toString().equals(\"\")\r\n                && !bi.cs21.getText().toString().equals(\"\")\r\n                && !bi.cs22.getText().toString().equals(\"\")\r\n                && (bi.cs1301.isChecked() || bi.cs1302.isChecked())\r\n        ) {\r\n            int ageinmonths = Integer.parseInt(bi.cs1502.getText().toString()) + Integer.parseInt(bi.cs1501.getText().toString());\r\n            int ageindays = (int) Math.floor(ageinmonths * DAYS_IN_A_MONTH);\r\n            int gender = bi.cs1301.isChecked() ? 1 : bi.cs1302.isChecked() ? 2 : 0;\r\n\r\n            ZScore zs = new ZScore(ageindays, gender);\r\n            double HLAZ = zs.getZScore_HLAZ(bi.cs21.getText().toString());\r\n            double WAZ = zs.getZScore_WAZ(bi.cs22.getText().toString());\r\n            double WHZ = zs.getZScore_WHZ(bi.cs22.getText().toString(), bi.cs21.getText().toString());\r\n\r\n            bi.ZScore.setText(\"HLAZ: \" + HLAZ + \" \\r\\nWAZ: \" + WAZ + \" \\r\\nWHZ: \" + WHZ);\r\n        } else {\r\n\r\n            Toast.makeText(this, \"Z-Score cannot be evaluated with missing values.\", Toast.LENGTH_SHORT).show();\r\n\r\n        }\r\n\r\n\r\n    }\r\n\r\n    public void BtnEnd() {\r\n        AppUtilsKt.contextEndActivity(this);\r\n    }\r\n\r\n    public void BtnContinue() {\r\n        if (!formValidation()) return;\r\n        saveDraft();\r\n        if (updateDB()) {\r\n            finish();\r\n            startActivity(new Intent(this, Section01CS2Activity.class));\r\n        } else {\r\n            Toast.makeText(this, \"Sorry. You can't go further.\\n Please contact IT Team (Failed to update DB)\", Toast.LENGTH_SHORT).show();\r\n        }\r\n    }\r\n\r\n\r\n    @Override\r\n    public void endSecActivity(boolean flag) {\r\n        saveDraft();\r\n        if (updateDB()) {\r\n            finish();\r\n            startActivity(new Intent(this, MainActivity.class));\r\n        } else {\r\n            Toast.makeText(this, \"Sorry. You can't go further.\\n Please contact IT Team (Failed to update DB)\", Toast.LENGTH_SHORT).show();\r\n        }\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/edu/aku/hassannaqvi/casi_register/ui/sections/Section01CS1Activity.java	(revision 397044870038e712a1003e67144c0770e616268e)
++++ app/src/main/java/edu/aku/hassannaqvi/casi_register/ui/sections/Section01CS1Activity.java	(date 1613045765936)
+@@ -15,6 +15,7 @@
+ import com.validatorcrawler.aliazaz.Validator;
+ 
+ import org.apache.commons.lang3.StringUtils;
++import org.jetbrains.annotations.NotNull;
+ import org.json.JSONObject;
+ import org.threeten.bp.Instant;
+ import org.threeten.bp.LocalDate;
+@@ -23,6 +24,7 @@
+ 
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
++import java.util.ArrayList;
+ import java.util.Date;
+ import java.util.List;
+ import java.util.Locale;
+@@ -39,14 +41,21 @@
+ import edu.aku.hassannaqvi.casi_register.databinding.ActivitySection01Cs1Binding;
+ import edu.aku.hassannaqvi.casi_register.models.Form;
+ import edu.aku.hassannaqvi.casi_register.models.HealthFacility;
++import edu.aku.hassannaqvi.casi_register.models.Villages;
+ import edu.aku.hassannaqvi.casi_register.ui.MainActivity;
+ import edu.aku.hassannaqvi.casi_register.utils.AppUtilsKt;
+ import edu.aku.hassannaqvi.casi_register.utils.EndSectionActivity;
+ import edu.aku.hassannaqvi.casi_register.utils.datecollection.AgeModel;
+ import edu.aku.hassannaqvi.casi_register.utils.datecollection.DateRepository;
+ import edu.aku.hassannaqvi.casi_register.utils.shared.SharedStorage;
++import io.reactivex.Observable;
++import io.reactivex.Observer;
++import io.reactivex.android.schedulers.AndroidSchedulers;
++import io.reactivex.disposables.Disposable;
++import io.reactivex.schedulers.Schedulers;
+ 
+ import static edu.aku.hassannaqvi.casi_register.CONSTANTS.DAYS_IN_A_MONTH;
++import static edu.aku.hassannaqvi.casi_register.core.MainApp.appInfo;
+ import static edu.aku.hassannaqvi.casi_register.core.MainApp.form;
+ 
+ public class Section01CS1Activity extends AppCompatActivity implements EndSectionActivity {
+@@ -55,7 +64,7 @@
+     boolean dtFlag = false;
+     LocalDate calculatedDOB;
+     LocalDate localDate;
+-    List<String> regionName, districtName, ucName, villageName;
++    List<String> facilityName;
+     List<HealthFacility> facilityList;
+     Map<String, HealthFacility> facilityMap;
+ 
+@@ -271,12 +280,12 @@
+             @Override
+             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                 for (HealthFacility item : facilityList) {
+-                    if (item.getRegion().equals(bi.cs03.getSelectedItem().toString()) && !districtName.contains(item.getDistrict())) {
+-                        districtName.add(item.getDistrict());
++                    if (item.getRegion().equals(bi.cs03.getSelectedItem().toString())) {
++                        facilityName.add(item.getDistrict());
+                         facilityMap.put(item.getDistrict(), item);
+                     }
+                 }
+-                bi.cs03.setAdapter(new ArrayAdapter<>(Section01CS1Activity.this, android.R.layout.simple_spinner_dropdown_item, districtName));
++                bi.cs03.setAdapter(new ArrayAdapter<>(Section01CS1Activity.this, android.R.layout.simple_spinner_dropdown_item, facilityName));
+             }
+ 
+             @Override
+@@ -286,6 +295,64 @@
+         });
+     }
+ 
++    private void initializingFailityVariables() {
++        facilityName = new ArrayList<String>() {
++            {
++                add("....");
++            }
++        };
++        bi.cs03.setEnabled(true);
++    }
++
++    private Observable<List<HealthFacility>> gethealthfacility() {
++        return Observable.create(emitter -> {
++            emitter.onNext(appInfo.getDbHelper().getFacility("Region"));
++            emitter.onComplete();
++        });
++    }
++
++    private void gettingFacilityData() {
++        initializingFailityVariables();
++        ArrayAdapter<String> adapter = new ArrayAdapter<HealthFacility>(this, android.R.layout.simple_spinner_dropdown_item, facilityName);
++        bi.cs03.setAdapter(adapter);
++        gethealthfacility()
++                .subscribeOn(Schedulers.io())
++                .observeOn(AndroidSchedulers.mainThread())
++                .subscribe(new Observer<List<HealthFacility>>() {
++                    Disposable disposable;
++
++                    @Override
++                    public void onSubscribe(@NotNull Disposable d) {
++                        disposable = d;
++                    }
++
++                    @Override
++                    public void onNext(@NotNull List<HealthFacility> vContract) {
++                        for (HealthFacility healthFacility : vContract) {
++                            if (!facilityName.contains(healthFacility.getRegion()))
++                                facilityName.add(healthFacility.getRegion());
++                            facilityList.add(healthFacility);
++                        }
++                        adapter.notifyDataSetChanged();
++                    }
++
++                    @Override
++                    public void onError(@NotNull Throwable e) {
++                    }
++
++                    @Override
++                    public void onComplete() {
++                        disposable.dispose();
++                    }
++                });
++    }
++
++    @Override
++    protected void onResume() {
++        super.onResume();
++        gettingFacilityData();
++    }
++
+     /*
+      * Watch listeners
+      * */

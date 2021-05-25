@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity" />
+
+        <variable
+            name="form"
+            type="edu.aku.hassannaqvi.sewage_sample.models.Form" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/fldGrpEnd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <!-- a06  Radio   -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fldGrpCVa06"
+                style="@style/cardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/qtxt_a06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/q_a06"
+                            android:text="@string/elc7" />
+
+                        <TextView
+                            android:id="@+id/q_a06"
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@id/qtxt_a06"
+                            android:layout_alignBottom="@id/qtxt_a06"
+                            android:text="@string/Q_elc7" />
+
+                    </RelativeLayout>
+
+
+                    <RadioGroup
+                        android:id="@+id/istatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:id="@+id/istatusa"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/elc701" />
+
+                        <RadioButton
+                            android:id="@+id/istatusb"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/elc702" />
+
+                        <RadioButton
+                            android:id="@+id/istatus96"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/elc796" />
+
+                        <EditText
+                            android:id="@+id/istatus96x"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,"
+                            android:hint="@string/elc796"
+                            android:inputType="text"
+                            android:maxLength="40"
+                            android:tag="istatus96"
+                            android:text='@{istatus96.checked ? istatus96x.getText().toString() : ""}'
+                            android:visibility='@{istatus96.checked ? View.VISIBLE : View.GONE}' />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!--ENDBUTTON linearlayout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEnd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:padding="10dp"
+                    android:text="End Interview"
+                    android:textColor="@color/white" />
+                <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
