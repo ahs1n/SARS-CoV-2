@@ -77,6 +77,12 @@ public class SectionFBActivity extends AppCompatActivity {
     private void SaveDraft() {
 
         // form = new Form();
+        form.setF1bspecid(bi.f1bspecID.getText().toString());
+
+        form.setF1bsite(bi.f1bsiteA.isChecked() ? "1"
+                : bi.f1bsiteB.isChecked() ? "2"
+                : "-1");
+
         form.setF1b01(bi.f1b01.getText().toString());
         form.setF1b02(bi.f1b02.getText().toString());
         form.setF1b03(bi.f1b03.getText().toString());

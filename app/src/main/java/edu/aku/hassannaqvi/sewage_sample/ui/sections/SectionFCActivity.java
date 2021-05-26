@@ -73,6 +73,12 @@ public class SectionFCActivity extends AppCompatActivity {
 
         //form = new Form();
 
+        form.setF1cspecid(bi.f1cspecID.getText().toString());
+
+        form.setF1csite(bi.f1csiteA.isChecked() ? "1"
+                : bi.f1csiteB.isChecked() ? "2"
+                : "-1");
+
         form.setF1c01(bi.f1c01.getText().toString());
 
         form.setF1c02(bi.f1c02.getText().toString());

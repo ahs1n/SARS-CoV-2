@@ -80,10 +80,10 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
         form = new Form();
 
-        form.setF1specid(bi.specID.getText().toString());
+        form.setF1aspecid(bi.f1aspecID.getText().toString());
 
-        form.setF1site(bi.siteA.isChecked() ? "1"
-                : bi.siteB.isChecked() ? "2"
+        form.setF1asite(bi.f1asiteA.isChecked() ? "1"
+                : bi.f1asiteB.isChecked() ? "2"
                 : "-1");
 
         form.setF1a01(bi.f1a01.getText().toString());
@@ -172,7 +172,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
                 String strResult = result.getContents();
                 String[] arrContents = strResult.split("-");
 
-                bi.specID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
+                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
 
             }
         } else {

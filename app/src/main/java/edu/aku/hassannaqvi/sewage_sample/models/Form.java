@@ -21,7 +21,10 @@ import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract.FormsTable;
 public class Form extends LiveData<Form> {
 
     private final String projectName = "sewage_sample";
+
     //    Section B
+    private String f1bspecid;
+    private String f1bsite;
     public String f1b01;
     public String f1b02;
     public String f1b03;
@@ -29,7 +32,10 @@ public class Form extends LiveData<Form> {
     public String f1b05;
     public String f1b06;
     public String f1b07;
+
     //    Section C
+    private String f1cspecid;
+    private String f1csite;
     public String f1c01;
     public String f1c02;
     public String f1c03;
@@ -51,9 +57,10 @@ public class Form extends LiveData<Form> {
     private String village = "";
     private String villageCode = "";
     private String formType = "";
+
     //    Section A
-    private String f1specid;
-    private String f1site;
+    private String f1aspecid;
+    private String f1asite;
     private String f1a01;
     private String f1a02;
     private String f1a03;
@@ -206,20 +213,20 @@ public class Form extends LiveData<Form> {
 
 
     //    Section A
-    public String getF1specid() {
-        return f1specid;
+    public String getF1aspecid() {
+        return f1aspecid;
     }
 
-    public void setF1specid(String f1specid) {
-        this.f1specid = f1specid;
+    public void setF1aspecid(String f1aspecid) {
+        this.f1aspecid = f1aspecid;
     }
 
-    public String getF1site() {
-        return f1site;
+    public String getF1asite() {
+        return f1asite;
     }
 
-    public void setF1site(String f1site) {
-        this.f1site = f1site;
+    public void setF1asite(String f1asite) {
+        this.f1asite = f1asite;
     }
 
     public String getF1a01() {
@@ -312,6 +319,22 @@ public class Form extends LiveData<Form> {
 
 
     //    Section B
+    public String getF1bspecid() {
+        return f1bspecid;
+    }
+
+    public void setF1bspecid(String f1bspecid) {
+        this.f1bspecid = f1bspecid;
+    }
+
+    public String getF1bsite() {
+        return f1bsite;
+    }
+
+    public void setF1bsite(String f1bsite) {
+        this.f1bsite = f1bsite;
+    }
+
     public String getF1b01() {
         return f1b01;
     }
@@ -370,6 +393,22 @@ public class Form extends LiveData<Form> {
 
 
 //    Section C
+
+    public String getF1cspecid() {
+        return f1cspecid;
+    }
+
+    public void setF1cspecid(String f1Cspecid) {
+        this.f1cspecid = f1cspecid;
+    }
+
+    public String getF1csite() {
+        return f1csite;
+    }
+
+    public void setF1csite(String f1csite) {
+        this.f1csite = f1csite;
+    }
 
     public String getF1c01() {
         return f1c01;
@@ -795,8 +834,8 @@ public class Form extends LiveData<Form> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("specid", f1specid)
-                    .put("f1site", f1site)
+            json.put("f1aspecid", f1aspecid)
+                    .put("f1asite", f1asite)
                     .put("f1a01", f1a01)
                     .put("f1a02", f1a02)
                     .put("f1a03", f1a03)
@@ -819,7 +858,9 @@ public class Form extends LiveData<Form> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("f1b01", f1b01)
+            json.put("f1bspecid", f1bspecid)
+                    .put("f1bsite", f1bsite)
+                    .put("f1b01", f1b01)
                     .put("f1b02", f1b02)
                     .put("f1b03", f1b03)
                     .put("f1b04", f1b04)
@@ -837,7 +878,9 @@ public class Form extends LiveData<Form> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("f1c01", f1c01)
+            json.put("f1cspecid", f1cspecid)
+                    .put("f1csite", f1csite)
+                    .put("f1c01", f1c01)
                     .put("f1c02", f1c02)
                     .put("f1c03", f1c03)
                     .put("f1c04", f1c04)
@@ -909,8 +952,8 @@ public class Form extends LiveData<Form> {
             try {
 
                 JSONObject json = new JSONObject(string);
-                this.f1specid = json.getString("f1specid");
-                this.f1site = json.getString("f1site");
+                this.f1aspecid = json.getString("f1aspecid");
+                this.f1asite = json.getString("f1asite");
                 this.f1a01 = json.getString("f1a01");
                 this.f1a02 = json.getString("f1a02");
                 this.f1a03 = json.getString("f1a03");
@@ -935,6 +978,8 @@ public class Form extends LiveData<Form> {
             try {
 
                 JSONObject json = new JSONObject(string);
+                this.f1bspecid = json.getString("f1bspecid");
+                this.f1bsite = json.getString("f1bsite");
                 this.f1b01 = json.getString("f1b01");
                 this.f1b02 = json.getString("f1b02");
                 this.f1b03 = json.getString("f1b03");
@@ -955,7 +1000,8 @@ public class Form extends LiveData<Form> {
             try {
 
                 JSONObject json = new JSONObject(string);
-
+                this.f1cspecid = json.getString("f1cspecid");
+                this.f1csite = json.getString("f1csite");
                 this.f1c01 = json.getString("f1c01");
                 this.f1c02 = json.getString("f1c02");
                 this.f1c03 = json.getString("f1c03");

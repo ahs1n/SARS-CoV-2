@@ -79,20 +79,20 @@
                     </LinearLayout>
 
                     <RadioGroup
-                        android:id="@+id/siteID"
+                        android:id="@+id/f1bsiteID"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/site_a"
+                            android:id="@+id/f1bsite_a"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/siteID_a" />
 
                         <RadioButton
-                            android:id="@+id/site_b"
+                            android:id="@+id/f1bsite_b"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
