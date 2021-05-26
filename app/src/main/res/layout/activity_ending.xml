@@ -75,7 +75,8 @@
                             android:id="@+id/istatusb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/elc702" />
+                            android:text="@string/elc702"
+                            android:visibility="gone" />
 
                         <RadioButton
                             android:id="@+id/istatus96"
