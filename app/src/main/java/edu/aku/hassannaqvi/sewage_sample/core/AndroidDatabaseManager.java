@@ -1,7 +1,7 @@
 package edu.aku.hassannaqvi.sewage_sample.core;
 
 /**
- * @author hassan.naqvi.
+ * @author hussain.siddiqui.
  */
 
 import android.app.Activity;

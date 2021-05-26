@@ -65,6 +65,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
     }
 
+
     public void BtnContinue() {
         if (!formValidation()) return;
         SaveDraft();
@@ -75,6 +76,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 //            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void SaveDraft() {
 
@@ -116,9 +118,11 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
     }
 
+
     private boolean formValidation() {
         return Validator.emptyCheckingContainer(this, bi.GrpName);
     }
+
 
     private void setUIContent() {
 

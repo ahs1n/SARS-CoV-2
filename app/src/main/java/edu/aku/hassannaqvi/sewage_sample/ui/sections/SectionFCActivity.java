@@ -39,6 +39,7 @@ public class SectionFCActivity extends AppCompatActivity {
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
     }
 
+
     private void setUIContent() {
     }
 

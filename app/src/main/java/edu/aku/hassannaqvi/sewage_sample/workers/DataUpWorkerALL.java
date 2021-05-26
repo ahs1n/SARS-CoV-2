@@ -42,7 +42,7 @@ public class DataUpWorkerALL extends Worker {
     private final String uploadTable;
     private final JSONArray uploadData;
     private final URL serverURL = null;
-    private final String nTitle = "Casi Register: Data Upload";
+    private final String nTitle = "Sewage Sample: Data Upload";
     private final int position;
     private final String uploadWhere;
     HttpURLConnection urlConnection;

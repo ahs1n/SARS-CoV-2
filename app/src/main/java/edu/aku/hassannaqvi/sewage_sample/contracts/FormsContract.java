@@ -3,7 +3,7 @@ package edu.aku.hassannaqvi.sewage_sample.contracts;
 import android.provider.BaseColumns;
 
 /**
- * @author hassan.naqvi.
+ * @author hussain.siddiqui.
  */
 
 public class FormsContract {

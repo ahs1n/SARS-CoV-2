@@ -12,6 +12,7 @@ import java.util.*
 /*
  * @author Mustufa.Ansari
  * @update Ali Azaz Alam dt. 12.16.20
+ * @author hussain.siddiqui
  * */
 class AppInfo {
     var versionName: String = StringUtils.EMPTY
