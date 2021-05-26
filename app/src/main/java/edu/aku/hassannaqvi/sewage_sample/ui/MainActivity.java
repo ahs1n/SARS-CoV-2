@@ -37,7 +37,6 @@ import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
 import edu.aku.hassannaqvi.sewage_sample.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.sewage_sample.models.Form;
 import edu.aku.hassannaqvi.sewage_sample.models.VersionApp;
-import edu.aku.hassannaqvi.sewage_sample.ui.list_activity.FormsReportDate;
 import edu.aku.hassannaqvi.sewage_sample.ui.login_activity.LoginActivity;
 import edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFAActivity;
 import edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFBActivity;
@@ -266,9 +265,9 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
          /*   case R.id.checkOpenForms:
                 intent = new Intent(MainActivity.this, PendingFormsActivity.class);
                 break;*/
-            case R.id.formsReportDate:
+/*            case R.id.formsReportDate:
                 intent = new Intent(MainActivity.this, FormsReportDate.class);
-                break;
+                break;*/
         /*    case R.id.formsReportCluster:
                 intent = new Intent(MainActivity.this, FormsReportCluster.class);
                 break;*/

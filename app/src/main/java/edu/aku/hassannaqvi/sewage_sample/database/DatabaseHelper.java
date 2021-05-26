@@ -325,6 +325,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_VILLAGE_CODE, form.getVillageCode());
         values.put(FormsTable.COLUMN_VILLAGE, form.getVillage());*/
 
+        values.put(FormsTable.COLUMN_SA, form.getsA());
         values.put(FormsTable.COLUMN_ISTATUS, form.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS96x, form.getIstatus96x());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, form.getEndingdatetime());

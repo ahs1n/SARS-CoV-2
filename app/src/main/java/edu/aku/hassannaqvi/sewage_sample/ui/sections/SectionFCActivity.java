@@ -16,7 +16,6 @@ import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract;
 import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
 import edu.aku.hassannaqvi.sewage_sample.database.DatabaseHelper;
 import edu.aku.hassannaqvi.sewage_sample.databinding.ActivitySectionFcBinding;
-import edu.aku.hassannaqvi.sewage_sample.models.Form;
 import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
 
@@ -58,20 +57,13 @@ public class SectionFCActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        long rowid = db.addForm(form);
-        form.set_ID(String.valueOf(rowid));
-        if (rowid > 0) {
-            form.set_UID(form.getDeviceID() + form.get_ID());
-            long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
-            if (count > 0) {
-                db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_SC, form.sCtoString());
-                return true;
-            } else {
-                Toast.makeText(this, getString(R.string.failedUpdateDb), Toast.LENGTH_SHORT).show();
-                return false;
-            }
+
+        long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
+        if (count > 0) {
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_SC, form.getsC());
+            return true;
         } else {
-            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.failedUpdateDb), Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -79,7 +71,7 @@ public class SectionFCActivity extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        form = new Form();
+        //form = new Form();
 
         form.setF1c01(bi.f1c01.getText().toString());
 
@@ -102,6 +94,8 @@ public class SectionFCActivity extends AppCompatActivity {
                 : "-1");
 
         form.setF1c08(bi.f1c08.getText().toString());
+
+        form.setsC(form.sCtoString());
 
     }
 

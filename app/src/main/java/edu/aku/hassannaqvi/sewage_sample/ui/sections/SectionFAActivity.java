@@ -56,15 +56,13 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         form.set_ID(String.valueOf(rowID));
         if (rowID != -1) {
             form.set_UID(form.getDeviceID() + form.get_ID());
-            long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
-            if (count > 0) {
-                db.updatesFormColumn(FormsContract.FormsTable.COLUMN_SA, form.sAtoString());
-            }
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
             return true;
         } else {
             Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
             return false;
         }
+
     }
 
     public void BtnContinue() {
@@ -113,6 +111,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         form.setF1a10(bi.f1a10.getText().toString());
 
         form.setF1a11(bi.f1a11.getText().toString());
+
+        form.setsA(form.sAtoString());
 
     }
 
