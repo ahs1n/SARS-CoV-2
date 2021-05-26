@@ -131,9 +131,10 @@ public class SectionFCActivity extends AppCompatActivity {
 
 
                 String strResult = result.getContents();
-                String[] arrContents = strResult.split("-");
+                bi.f1cspecID.setText(strResult);
 
-                bi.f1cspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
+//                String[] arrContents = strResult.split("-");
+//                bi.f1cspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
 
             }
         } else {

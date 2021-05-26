@@ -44,19 +44,7 @@ public class Form extends LiveData<Form> {
     public String f1c06;
     public String f1c07;
     public String f1c08;
-    private String _ID = "";
-    private String _UID = "";
-    private String username;
-    private String sysdate = "";
-    private String reg_no = "";
-    private String countryCode = "";
-    private String district = "";
-    private String districtCode = "";
-    private String uc = "";
-    private String ucCode = "";
-    private String village = "";
-    private String villageCode = "";
-    private String formType = "";
+
 
     //    Section A
     private String f1aspecid;
@@ -96,6 +84,22 @@ public class Form extends LiveData<Form> {
     private String _luid = "";
     private String fupno = "";
     private String scr_date = "";
+
+
+    private String _ID = "";
+    private String _UID = "";
+    private String username;
+    private String sysdate = "";
+    private String reg_no = "";
+    private String countryCode = "";
+    private String district = "";
+    private String districtCode = "";
+    private String uc = "";
+    private String ucCode = "";
+    private String village = "";
+    private String villageCode = "";
+    private String formType = "";
+
     //Only for population in DB
     private String name;
     //Date Settings

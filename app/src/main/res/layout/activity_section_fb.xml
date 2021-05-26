@@ -45,6 +45,7 @@
                             android:text="@string/specID" />
 
                         <EditText
+                            android:editable="false"
                             android:id="@+id/f1bspecID"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

@@ -168,16 +168,14 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
-
                 String strResult = result.getContents();
-                String[] arrContents = strResult.split("-");
+                bi.f1aspecID.setText(strResult);
 
-                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
-
+//                String[] arrContents = strResult.split("-");
+//                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-
         }
     }
 }
