@@ -57,7 +57,7 @@ public class SectionFBActivity extends AppCompatActivity {
 
 
     private boolean UpdateDB() {
-        DatabaseHelper db = MainApp.appInfo.getDbHelper();
+        db = MainApp.appInfo.getDbHelper();
 
         long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
         if (count > 0) {
@@ -77,6 +77,9 @@ public class SectionFBActivity extends AppCompatActivity {
     private void SaveDraft() {
 
         // form = new Form();
+
+        form.setAppversion(MainApp.appInfo.getAppVersion());
+
         form.setF1bspecid(bi.f1bspecID.getText().toString());
 
         form.setF1bsite(bi.f1bsiteA.isChecked() ? "1"

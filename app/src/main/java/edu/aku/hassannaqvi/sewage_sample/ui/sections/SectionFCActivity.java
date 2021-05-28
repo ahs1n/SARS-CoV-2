@@ -57,7 +57,7 @@ public class SectionFCActivity extends AppCompatActivity {
 
 
     private boolean UpdateDB() {
-        DatabaseHelper db = MainApp.appInfo.getDbHelper();
+        db = MainApp.appInfo.getDbHelper();
 
         long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
         if (count > 0) {
@@ -73,6 +73,8 @@ public class SectionFCActivity extends AppCompatActivity {
     private void SaveDraft() {
 
         //form = new Form();
+
+        form.setAppversion(MainApp.appInfo.getAppVersion());
 
         form.setF1cspecid(bi.f1cspecID.getText().toString());
 

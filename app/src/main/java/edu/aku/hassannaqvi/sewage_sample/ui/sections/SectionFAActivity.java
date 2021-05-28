@@ -81,6 +81,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
     private void SaveDraft() {
 
         form = new Form();
+        form.setAppversion(MainApp.appInfo.getAppVersion());
 
         form.setF1aspecid(bi.f1aspecID.getText().toString());
 

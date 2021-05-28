@@ -27,7 +27,7 @@
         android:name="edu.aku.hassannaqvi.sewage_sample.core.MainApp"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:logo="@drawable/app_icon"
         android:supportsRtl="true"
@@ -35,12 +35,12 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
         tools:targetApi="m">
-        <activity
-            android:name="edu.aku.hassannaqvi.sewage_sample.ui.list_activity.FormsReportDate"
-            android:exported="false"
-            android:label="Forms Report"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish" />
+        <!--        <activity
+                    android:name="edu.aku.hassannaqvi.sewage_sample.ui.list_activity.FormsReportDate"
+                    android:exported="false"
+                    android:label="Forms Report"
+                    android:screenOrientation="portrait"
+                    android:theme="@style/AppThemeEnglish" />-->
         <activity
             android:name="edu.aku.hassannaqvi.sewage_sample.ui.other.SplashscreenActivity"
             android:screenOrientation="portrait"

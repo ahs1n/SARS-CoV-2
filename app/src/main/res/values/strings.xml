@@ -88,6 +88,9 @@
     <string name="f1a10">Collection volume (L)</string>
     <string name="f1a11">Notes (flowing/stagnant water, brief around the sample collection area)</string>
     <string name="f1b01">Date field sample filtered</string>
+    <string name="time">Time field sample filtered</string>
+    <string name="startTime">Start Time</string>
+    <string name="endTime">End Time</string>
     <string name="f1b02">Filtered by</string>
     <string name="f1b03">Volume after solids bled off (L)</string>
     <string name="f1b04">Final volume after filtration (L)</string>
@@ -166,6 +169,7 @@
     <string name='Q_f1b05'>f1b05</string>
     <string name='Q_f1b06'>f1b06</string>
     <string name='Q_f1b07'>f1b07</string>
+    <string name='Q_f1b08'>f1b08</string>
     <string name='Q_f1c01'>f1c01</string>
     <string name='Q_f1c02'>f1c02</string>
     <string name='Q_f1c03'>f1c03</string>

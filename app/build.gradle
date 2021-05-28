@@ -29,7 +29,7 @@ android {
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.sewage_sample"
             minSdkVersion 21
-            targetSdkVersion 30
+            targetSdkVersion 21
             versionCode code
             versionName "1.39"
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
