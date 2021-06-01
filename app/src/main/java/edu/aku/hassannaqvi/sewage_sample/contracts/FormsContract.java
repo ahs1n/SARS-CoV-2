@@ -24,6 +24,8 @@ public class FormsContract {
         public static final String COLUMN_UC = "uc";
         public static final String COLUMN_VILLAGE = "village";
         public static final String COLUMN_VILLAGE_CODE = "villageCode";*/
+        public static final String COLUMN_F1ASPECID = "f1aSpecID";
+        public static final String COLUMN_F1ASITE = "f1asite";
         public static final String COLUMN_SA = "sA";
         public static final String COLUMN_SB = "sB";
         public static final String COLUMN_SC = "sC";

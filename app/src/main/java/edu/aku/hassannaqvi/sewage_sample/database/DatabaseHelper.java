@@ -317,7 +317,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_USERNAME, form.getUsername());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysdate());
 
+        values.put(FormsTable.COLUMN_F1ASPECID, form.getF1aspecid());
+        values.put(FormsTable.COLUMN_F1ASITE, form.getF1asite());
         values.put(FormsTable.COLUMN_SA, form.getsA());
+        values.put(FormsTable.COLUMN_SB, form.getsB());
+        values.put(FormsTable.COLUMN_SC, form.getsC());
         values.put(FormsTable.COLUMN_ISTATUS, form.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS96x, form.getIstatus96x());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, form.getEndingdatetime());
@@ -1380,4 +1384,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return form;
     }
+
+    // Check Duplicate Sample ID
+/*    public boolean getSampleID(String sampleID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from forms where f1aspecID = '" + sampleID + "' order by _id desc limit 1", null);
+        return result.getCount() == 0;
+    }*/
+
+
+    // Check Duplicate Sample ID
+    public boolean checkSampleId(String sampleID) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            /*if (mCursor.moveToFirst()) {
+                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.singleUser.DIST_ID));
+                }*/
+            return mCursor.getCount() > 0;
+        }
+        return false;
+    }
+
+
+    /*public boolean checkSampleId(String sampleID) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? AND " + FormsTable.COLUMN_ISTATUS + "=?", new String[]{sampleID, "1"});
+        if (mCursor != null) {
+
+            *//*if (mCursor.moveToFirst()) {
+                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.singleUser.DIST_ID));
+                }*//*
+            return mCursor.getCount() > 0;
+        }
+        return false;
+    }*/
+
+
+    /*public Form checkSampleId(String hfCode, String status, String cons) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Form form = null;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? AND " + FormsTable.COLUMN_ISTATUS + " != ?", new String[]{hfCode, status});
+        if (mCursor != null) {
+            if (mCursor.getCount() == 0) return Form.getInstance();
+            if (mCursor.moveToFirst()) {
+                form = Form.getInstance().Hydrate(mCursor, cons);
+                //form = Form.getInstance().hydrate(mCursor);
+            }
+        }
+        return form;
+    }*/
+
 }

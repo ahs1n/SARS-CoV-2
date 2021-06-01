@@ -19,6 +19,8 @@ object CreateTable {
             + FormsTable.COLUMN_SYSDATE + " TEXT,"
             + FormsTable.COLUMN_UID + " TEXT,"
             + FormsTable.COLUMN_USERNAME + " TEXT,"
+            + FormsTable.COLUMN_F1ASPECID + " TEXT,"
+            + FormsTable.COLUMN_F1ASITE + " TEXT,"
             + FormsTable.COLUMN_SA + " TEXT,"
             + FormsTable.COLUMN_SB + " TEXT,"
             + FormsTable.COLUMN_SC + " TEXT,"
