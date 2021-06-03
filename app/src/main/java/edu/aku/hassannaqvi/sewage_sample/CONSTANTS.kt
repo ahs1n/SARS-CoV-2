@@ -19,10 +19,11 @@ class CONSTANTS {
         const val FOLLOWUP_FLAG = "followup_flag"
 
         //TYPE_COUNTERS
-        const val SECTION_C = "M101"
-        const val SECTION_A = "C101"
+        const val SECTION_A = "SC"
+        const val SECTION_B = "FL"
+        const val SECTION_C = "TR"
         const val WRA_FOLLOWUP_TYPE = "M102"
-        const val SECTION_B = "C102"
+
 
         //MainActivity
         const val DOWNLOAD_FILE_REFID = "downloadFileRefID"

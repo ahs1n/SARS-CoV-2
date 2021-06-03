@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.sewage_sample.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,21 +12,30 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Validator;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import edu.aku.hassannaqvi.sewage_sample.CONSTANTS;
 import edu.aku.hassannaqvi.sewage_sample.R;
 import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract;
 import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
 import edu.aku.hassannaqvi.sewage_sample.database.DatabaseHelper;
 import edu.aku.hassannaqvi.sewage_sample.databinding.ActivitySectionFbBinding;
+import edu.aku.hassannaqvi.sewage_sample.models.Form;
 import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.sewage_sample.utils.FormState;
+import edu.aku.hassannaqvi.sewage_sample.utils.SimpleCallback;
 
 import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
 import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
 
-public class SectionFBActivity extends AppCompatActivity {
+public class SectionFBActivity extends AppCompatActivity implements SimpleCallback<FormState> {
 
     ActivitySectionFbBinding bi;
     DatabaseHelper db;
+    Form subForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +45,11 @@ public class SectionFBActivity extends AppCompatActivity {
         this.setTitle(getString(R.string.sectionii_mainheading));
         setupSkips();
         setUIContent();
-//        int country = SharedStorage.INSTANCE.getCountryCode(this);
+
+        //DB
+        db = MainApp.appInfo.getDbHelper();
+        MainApp.form = null;
+
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
     }
 
@@ -51,20 +65,21 @@ public class SectionFBActivity extends AppCompatActivity {
             finish();
             gotoActivityWithSerializable(this, EndingActivity.class, "complete", true);
         } else {
-//            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
         }
     }
 
 
     private boolean UpdateDB() {
         db = MainApp.appInfo.getDbHelper();
-
-        long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
-        if (count > 0) {
-            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_SB, form.getsB());
+        long rowID = db.addForm(form);
+        form.set_ID(String.valueOf(rowID));
+        if (rowID != -1) {
+            form.set_UID(form.getDeviceID() + form.get_ID());
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
             return true;
         } else {
-            Toast.makeText(this, getString(R.string.failedUpdateDb), Toast.LENGTH_SHORT).show();
+            AppUtilsKt.toast(getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), this);
             return false;
         }
     }
@@ -76,9 +91,14 @@ public class SectionFBActivity extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        // form = new Form();
-
+        form = new Form();
         form.setAppversion(MainApp.appInfo.getAppVersion());
+        form.setDeviceID(MainApp.appInfo.getDeviceID());
+        form.setDevicetagID(MainApp.appInfo.getTagName());
+        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        form.setUsername(MainApp.user.getUserName());
+
+        form.setFormType(CONSTANTS.SECTION_B);
 
         form.setF1bspecid(bi.f1bspecID.getText().toString());
 
@@ -107,6 +127,7 @@ public class SectionFBActivity extends AppCompatActivity {
         AppUtilsKt.openSectionEndingActivity(this, false);
     }
 
+
     // Get the results:
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -117,18 +138,48 @@ public class SectionFBActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
-
                 String strResult = result.getContents();
                 bi.f1bspecID.setText(strResult);
-
+                if (!checkQR())
+                    bi.fldGrpCVQRFB.setVisibility(View.GONE);
 //                String[] arrContents = strResult.split("-");
-//                bi.f1bspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
-
+//                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-
         }
     }
 
+    private boolean checkQR() {
+        boolean flag = db.checkSampleId_F1B_A(bi.f1bspecID.getText().toString(), this);
+        if (!flag) return false;
+        boolean form = db.checkSampleId_F1B_B(bi.f1bspecID.getText().toString(), this);
+        if (form) {
+            return false;
+        } else {
+            bi.fldGrpCVQRFB.setVisibility(View.VISIBLE);
+            return true;
+        }
+    }
+
+    public void scanQR_FB(View view) {
+        // Scan QR Code
+        bi.fldGrpCVQRFB.setVisibility(View.GONE);
+        new IntentIntegrator(this).initiateScan();
+    }
+
+    @Override
+    public void invoke(FormState formState) {
+        switch (formState) {
+            case FORMA_NOT_EXIST:
+                AppUtilsKt.toast("Sample Collection form is not exist", this);
+                break;
+            case FORMB_EXIST:
+                AppUtilsKt.toast("This form is already exist", this);
+                break;
+            case INTERNAL_ERROR:
+                AppUtilsKt.toast("Internal error while accessing the cursor", this);
+                break;
+        }
+    }
 }

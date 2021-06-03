@@ -277,3 +277,30 @@ fun String.shortStringLength(): String {
 }
 
 
+/*
+* Toast dealing
+* */
+fun Any.toast(context: Context): Toast {
+    return Toast.makeText(context, this.toString(), Toast.LENGTH_SHORT).apply { show() }
+}
+
+
+@FunctionalInterface
+interface SimpleCallback<T> {
+    fun invoke(msg: T)
+}
+
+/*
+* Form exist checking
+* */
+enum class FormState {
+    FORMA_NOT_EXIST,
+    FORMA_EXIST,
+    FORMB_NOT_EXIST,
+    FORMB_EXIST,
+    INTERNAL_ERROR
+}
+
+
+
+

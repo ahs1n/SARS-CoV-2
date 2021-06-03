@@ -26,6 +26,8 @@ import edu.aku.hassannaqvi.sewage_sample.models.Users;
 import edu.aku.hassannaqvi.sewage_sample.models.Users.UsersTable;
 import edu.aku.hassannaqvi.sewage_sample.models.VersionApp;
 import edu.aku.hassannaqvi.sewage_sample.models.VersionApp.VersionAppTable;
+import edu.aku.hassannaqvi.sewage_sample.utils.FormState;
+import edu.aku.hassannaqvi.sewage_sample.utils.SimpleCallback;
 
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.DATABASE_VERSION;
@@ -319,6 +321,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values.put(FormsTable.COLUMN_F1ASPECID, form.getF1aspecid());
         values.put(FormsTable.COLUMN_F1ASITE, form.getF1asite());
+        values.put(FormsTable.COLUMN_F1BSPECID, form.getF1bspecid());
+        values.put(FormsTable.COLUMN_F1BSITE, form.getF1bsite());
+        values.put(FormsTable.COLUMN_F1CSPECID, form.getF1bspecid());
+        values.put(FormsTable.COLUMN_F1CSITE, form.getF1bsite());
+
         values.put(FormsTable.COLUMN_SA, form.getsA());
         values.put(FormsTable.COLUMN_SB, form.getsB());
         values.put(FormsTable.COLUMN_SC, form.getsC());
@@ -1393,8 +1400,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }*/
 
 
-    // Check Duplicate Sample ID
-    public boolean checkSampleId(String sampleID) throws SQLException {
+    // Check Duplicate Sample ID Form A1
+    public boolean checkSampleId_F1A(String sampleID) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? ", new String[]{sampleID});
@@ -1406,6 +1413,59 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+
+    // Check Duplicate Sample ID Form B1
+    public boolean checkSampleId_F1B_A(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean flag = false;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            if (mCursor.getCount() > 0) {
+                flag = true;
+                callback.invoke(FormState.FORMA_EXIST);
+            } else
+                callback.invoke(FormState.FORMA_NOT_EXIST);
+
+            mCursor.close();
+        } else {
+            callback.invoke(FormState.INTERNAL_ERROR);
+        }
+        return flag;
+    }
+
+    public boolean checkSampleId_F1B_B(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean flag = false;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1BSPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            if (mCursor.getCount() > 0) {
+                flag = true;
+                callback.invoke(FormState.FORMB_EXIST);
+            } else
+                callback.invoke(FormState.FORMB_NOT_EXIST);
+
+            mCursor.close();
+        } else {
+            callback.invoke(FormState.INTERNAL_ERROR);
+        }
+        return flag;
+    }
+
+    // Check Duplicate Sample ID Form C1
+    public boolean checkSampleId_F1C(String sampleID) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1CSPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            /*if (mCursor.moveToFirst()) {
+                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.singleUser.DIST_ID));
+                }*/
+            return mCursor.getCount() > 0;
+        }
+        return false;
+    }
+
+
 
 
     /*public boolean checkSampleId(String sampleID) throws SQLException {

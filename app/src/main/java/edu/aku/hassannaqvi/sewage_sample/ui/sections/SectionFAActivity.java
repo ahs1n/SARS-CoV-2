@@ -13,6 +13,11 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Validator;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import edu.aku.hassannaqvi.sewage_sample.CONSTANTS;
 import edu.aku.hassannaqvi.sewage_sample.R;
 import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract;
 import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
@@ -38,8 +43,6 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_fa);
         bi.setCallback(this);
         this.setTitle(getString(R.string.sectiona_mainheading));
-
-        form = new Form();
         setListeners();
         setUIContent();
 
@@ -48,7 +51,6 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
 
-
     }
 
 
@@ -56,9 +58,6 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
      * Save functions
      * */
     private boolean updateDB() {
-
-        if (!form.get_ID().equals("")) return true;
-
         long rowID = db.addForm(form);
         form.set_ID(String.valueOf(rowID));
         if (rowID != -1) {
@@ -69,7 +68,6 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
             Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
             return false;
         }
-
     }
 
 
@@ -80,16 +78,22 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
             finish();
             gotoActivityWithSerializable(this, EndingActivity.class, "complete", true);
         } else {
-//            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
         }
     }
 
 
     private void SaveDraft() {
 
-        if (!form.get_ID().equals("")) return;
+        form = new Form();
 
         form.setAppversion(MainApp.appInfo.getAppVersion());
+        form.setDeviceID(MainApp.appInfo.getDeviceID());
+        form.setDevicetagID(MainApp.appInfo.getTagName());
+        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        form.setUsername(MainApp.user.getUserName());
+
+        form.setFormType(CONSTANTS.SECTION_A);
 
         form.setF1aspecid(bi.f1aspecID.getText().toString());
 
@@ -183,8 +187,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
                 String strResult = result.getContents();
                 bi.f1aspecID.setText(strResult);
-                if (checkQR())
-                    bi.fldGrpCVQR.setVisibility(View.VISIBLE);
+                if (!checkQR())
+                    bi.fldGrpCVQR.setVisibility(View.GONE);
 //                String[] arrContents = strResult.split("-");
 //                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
@@ -194,7 +198,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
     }
 
     private boolean checkQR() {
-        if (db.checkSampleId(bi.f1aspecID.getText().toString())) {
+        if (db.checkSampleId_F1A(bi.f1aspecID.getText().toString())) {
             Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show();
             return false;
         } else {

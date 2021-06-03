@@ -26,6 +26,10 @@ public class FormsContract {
         public static final String COLUMN_VILLAGE_CODE = "villageCode";*/
         public static final String COLUMN_F1ASPECID = "f1aSpecID";
         public static final String COLUMN_F1ASITE = "f1asite";
+        public static final String COLUMN_F1BSPECID = "f1bSpecID";
+        public static final String COLUMN_F1BSITE = "f1bsite";
+        public static final String COLUMN_F1CSPECID = "f1cSpecID";
+        public static final String COLUMN_F1CSITE = "f1csite";
         public static final String COLUMN_SA = "sA";
         public static final String COLUMN_SB = "sB";
         public static final String COLUMN_SC = "sC";

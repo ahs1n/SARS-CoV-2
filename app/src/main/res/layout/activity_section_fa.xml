@@ -45,21 +45,24 @@
                             android:layout_weight="1"
                             android:text="@string/specID" />
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2">
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
                             <EditText
                                 android:id="@+id/f1aspecID"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:editable="false"
                                 android:hint="@string/specID"
                                 android:textSize="@dimen/_10sdp" />
 
                             <ImageButton
-                                android:id="@+id/scanQr"
+                                android:id="@+id/scanQrFA"
                                 android:layout_width="56dp"
                                 android:layout_height="56dp"
                                 android:layout_alignParentEnd="true"
@@ -67,7 +70,7 @@
                                 android:layout_margin="8dp"
                                 android:onClick="scanQR"
                                 android:src="@drawable/ic_qrcode" />
-                        </RelativeLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -99,7 +102,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="@string/specID" />
+                                android:text="@string/siteID" />
                         </LinearLayout>
 
                         <RadioGroup

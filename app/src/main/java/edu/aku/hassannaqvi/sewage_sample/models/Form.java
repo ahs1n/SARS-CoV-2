@@ -780,6 +780,11 @@ public class Form extends LiveData<Form> {
         this.village = jsonObject.getString(FormsTable.COLUMN_VILLAGE);*/
         this.f1aspecid = jsonObject.getString(FormsTable.COLUMN_F1ASPECID);
         this.f1asite = jsonObject.getString(FormsTable.COLUMN_F1ASITE);
+        this.f1bspecid = jsonObject.getString(FormsTable.COLUMN_F1BSPECID);
+        this.f1bsite = jsonObject.getString(FormsTable.COLUMN_F1BSITE);
+        this.f1cspecid = jsonObject.getString(FormsTable.COLUMN_F1CSPECID);
+        this.f1csite = jsonObject.getString(FormsTable.COLUMN_F1CSITE);
+
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
@@ -823,6 +828,11 @@ public class Form extends LiveData<Form> {
         this.village = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_VILLAGE));*/
         this.f1aspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1ASPECID));
         this.f1asite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1ASITE));
+        this.f1bspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1BSPECID));
+        this.f1bsite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1BSITE));
+        this.f1cspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1CSPECID));
+        this.f1csite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1CSITE));
+
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
@@ -839,6 +849,17 @@ public class Form extends LiveData<Form> {
                 sBHydrate(cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SB)));
                 break;
         }
+        return this;
+    }
+
+    //
+    public Form hydrateSB(Cursor cursor) {
+        this._ID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
+        this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
+        this.f1aspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1ASPECID));
+        this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
+        this.sB = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SB));
+
         return this;
     }
 
@@ -923,6 +944,10 @@ public class Form extends LiveData<Form> {
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
             json.put(FormsTable.COLUMN_F1ASPECID, this.f1aspecid == null ? JSONObject.NULL : this.f1aspecid);
             json.put(FormsTable.COLUMN_F1ASITE, this.f1asite == null ? JSONObject.NULL : this.f1asite);
+            json.put(FormsTable.COLUMN_F1BSPECID, this.f1bspecid == null ? JSONObject.NULL : this.f1bspecid);
+            json.put(FormsTable.COLUMN_F1BSITE, this.f1bsite == null ? JSONObject.NULL : this.f1bsite);
+            json.put(FormsTable.COLUMN_F1CSPECID, this.f1cspecid == null ? JSONObject.NULL : this.f1cspecid);
+            json.put(FormsTable.COLUMN_F1CSITE, this.f1csite == null ? JSONObject.NULL : this.f1csite);
 
 
             switch (type) {
@@ -947,6 +972,8 @@ public class Form extends LiveData<Form> {
             }
 
             json.put(FormsTable.COLUMN_F1ASPECID, this.f1aspecid == null ? JSONObject.NULL : this.f1aspecid);
+            json.put(FormsTable.COLUMN_F1BSPECID, this.f1bspecid == null ? JSONObject.NULL : this.f1bspecid);
+            json.put(FormsTable.COLUMN_F1CSPECID, this.f1cspecid == null ? JSONObject.NULL : this.f1cspecid);
 
             json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
             json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);

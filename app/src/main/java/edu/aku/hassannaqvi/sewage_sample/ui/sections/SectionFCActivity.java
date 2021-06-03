@@ -11,11 +11,16 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Validator;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import edu.aku.hassannaqvi.sewage_sample.R;
 import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract;
 import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
 import edu.aku.hassannaqvi.sewage_sample.database.DatabaseHelper;
 import edu.aku.hassannaqvi.sewage_sample.databinding.ActivitySectionFcBinding;
+import edu.aku.hassannaqvi.sewage_sample.models.Form;
 import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
 
@@ -33,8 +38,13 @@ public class SectionFCActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_fc);
         bi.setCallback(this);
         this.setTitle(getString(R.string.sectioniii_mainheading));
+
+        form = new Form();
         setListeners();
         setUIContent();
+
+        //DB
+        db = MainApp.appInfo.getDbHelper();
 
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
     }
@@ -75,6 +85,10 @@ public class SectionFCActivity extends AppCompatActivity {
         //form = new Form();
 
         form.setAppversion(MainApp.appInfo.getAppVersion());
+        form.setDeviceID(MainApp.appInfo.getDeviceID());
+        form.setDevicetagID(MainApp.appInfo.getTagName());
+        form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        form.setUsername(MainApp.user.getUserName());
 
         form.setF1cspecid(bi.f1cspecID.getText().toString());
 
