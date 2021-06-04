@@ -412,7 +412,7 @@ public class Form extends LiveData<Form> {
         return f1cspecid;
     }
 
-    public void setF1cspecid(String f1Cspecid) {
+    public void setF1cspecid(String f1cspecid) {
         this.f1cspecid = f1cspecid;
     }
 

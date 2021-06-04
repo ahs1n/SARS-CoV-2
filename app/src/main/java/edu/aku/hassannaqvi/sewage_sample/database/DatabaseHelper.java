@@ -323,8 +323,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_F1ASITE, form.getF1asite());
         values.put(FormsTable.COLUMN_F1BSPECID, form.getF1bspecid());
         values.put(FormsTable.COLUMN_F1BSITE, form.getF1bsite());
-        values.put(FormsTable.COLUMN_F1CSPECID, form.getF1bspecid());
-        values.put(FormsTable.COLUMN_F1CSITE, form.getF1bsite());
+        values.put(FormsTable.COLUMN_F1CSPECID, form.getF1cspecid());
+        values.put(FormsTable.COLUMN_F1CSITE, form.getF1csite());
 
         values.put(FormsTable.COLUMN_SA, form.getsA());
         values.put(FormsTable.COLUMN_SB, form.getsB());

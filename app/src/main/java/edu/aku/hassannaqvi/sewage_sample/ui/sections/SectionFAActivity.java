@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
@@ -50,6 +51,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         db = MainApp.appInfo.getDbHelper();
 
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -141,6 +144,10 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
     }
 
+    public void f1aspecIDOnTextChanged(CharSequence s, int start, int before, int count) {
+        Clear.clearAllFields(bi.fldGrpCVQR);
+    }
+
 
     /*
      * Watch listeners
@@ -183,7 +190,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
             if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 String strResult = result.getContents();
                 bi.f1aspecID.setText(strResult);

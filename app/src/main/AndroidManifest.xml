@@ -63,17 +63,20 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFAActivity"
+            android:parentActivityName=".ui.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish" />
 
         <activity
             android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFBActivity"
+            android:parentActivityName=".ui.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish" />
         <activity
             android:name="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFCActivity"
+            android:parentActivityName=".ui.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish" />

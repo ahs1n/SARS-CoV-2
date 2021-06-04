@@ -281,7 +281,7 @@ fun String.shortStringLength(): String {
 * Toast dealing
 * */
 fun Any.toast(context: Context): Toast {
-    return Toast.makeText(context, this.toString(), Toast.LENGTH_SHORT).apply { show() }
+    return Toast.makeText(context, this.toString(), Toast.LENGTH_LONG).apply { show() }
 }
 
 

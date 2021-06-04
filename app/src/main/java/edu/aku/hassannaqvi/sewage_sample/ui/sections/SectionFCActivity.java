@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.sewage_sample.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +10,14 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.aku.hassannaqvi.sewage_sample.CONSTANTS;
 import edu.aku.hassannaqvi.sewage_sample.R;
 import edu.aku.hassannaqvi.sewage_sample.contracts.FormsContract;
 import edu.aku.hassannaqvi.sewage_sample.core.MainApp;
@@ -47,10 +50,16 @@ public class SectionFCActivity extends AppCompatActivity {
         db = MainApp.appInfo.getDbHelper();
 
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
     private void setUIContent() {
+    }
+
+    public void f1cspecIDOnTextChanged(CharSequence s, int start, int before, int count) {
+        Clear.clearAllFields(bi.fldGrpCVQRFC);
     }
 
 
@@ -61,20 +70,21 @@ public class SectionFCActivity extends AppCompatActivity {
             finish();
             gotoActivityWithSerializable(this, EndingActivity.class, "complete", true);
         } else {
-//            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), Toast.LENGTH_SHORT).show();
         }
     }
 
 
     private boolean UpdateDB() {
         db = MainApp.appInfo.getDbHelper();
-
-        long count = db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
-        if (count > 0) {
-            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_SC, form.getsC());
+        long rowID = db.addForm(form);
+        form.set_ID(String.valueOf(rowID));
+        if (rowID != -1) {
+            form.set_UID(form.getDeviceID() + form.get_ID());
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, form.get_UID());
             return true;
         } else {
-            Toast.makeText(this, getString(R.string.failedUpdateDb), Toast.LENGTH_SHORT).show();
+            AppUtilsKt.toast(getString(R.string.updateDbError1) + "/n" + getString(R.string.updateDbError2), this);
             return false;
         }
     }
@@ -82,13 +92,15 @@ public class SectionFCActivity extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        //form = new Form();
+        form = new Form();
 
         form.setAppversion(MainApp.appInfo.getAppVersion());
         form.setDeviceID(MainApp.appInfo.getDeviceID());
         form.setDevicetagID(MainApp.appInfo.getTagName());
         form.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
         form.setUsername(MainApp.user.getUserName());
+
+        form.setFormType(CONSTANTS.SECTION_C);
 
         form.setF1cspecid(bi.f1cspecID.getText().toString());
 
@@ -144,19 +156,22 @@ public class SectionFCActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 String strResult = result.getContents();
                 bi.f1cspecID.setText(strResult);
 
 //                String[] arrContents = strResult.split("-");
 //                bi.f1cspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
-
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
-
         }
+    }
+
+    public void scanQR_FC(View view) {
+        // Scan QR Code
+//        bi.fldGrpCVQRFC.setVisibility(View.GONE);
+        new IntentIntegrator(this).initiateScan();
     }
 }

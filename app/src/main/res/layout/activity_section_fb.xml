@@ -58,6 +58,7 @@
                                 android:layout_weight="1"
                                 android:editable="false"
                                 android:hint="@string/specID"
+                                android:onTextChanged="@{callback.f1bspecIDOnTextChanged}"
                                 android:textSize="@dimen/_10sdp" />
 
                             <ImageButton
@@ -223,6 +224,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:hint="HH:MM"
+                                    app:is24HourView="true"
                                     app:timeFormat="HH:mm" />
                             </LinearLayout>
 
@@ -244,6 +246,7 @@
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
                                     android:hint="HH:MM"
+                                    app:is24HourView="true"
                                     app:timeFormat="HH:mm" />
                             </LinearLayout>
 

@@ -59,6 +59,7 @@
                                 android:layout_weight="1"
                                 android:editable="false"
                                 android:hint="@string/specID"
+                                android:onTextChanged="@{callback.f1aspecIDOnTextChanged}"
                                 android:textSize="@dimen/_10sdp" />
 
                             <ImageButton
