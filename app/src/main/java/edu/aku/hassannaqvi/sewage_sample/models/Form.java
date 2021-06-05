@@ -37,10 +37,12 @@ public class Form extends LiveData<Form> {
     private String f1bsite;
     public String f1b01;
     public String f1b02;
+    public String f1b02a;
     public String f1b03;
     public String f1b04;
     public String f1b05;
     public String f1b06;
+    public String f1b06a;
     public String f1b07;
 
     //    Section C
@@ -365,6 +367,14 @@ public class Form extends LiveData<Form> {
         this.f1b02 = f1b02;
     }
 
+    public String getF1b02a() {
+        return f1b02a;
+    }
+
+    public void setF1b02a(String f1b02a) {
+        this.f1b02a = f1b02a;
+    }
+
     public String getF1b03() {
         return f1b03;
     }
@@ -395,6 +405,14 @@ public class Form extends LiveData<Form> {
 
     public void setF1b06(String f1b06) {
         this.f1b06 = f1b06;
+    }
+
+    public String getF1b06a() {
+        return f1b06a;
+    }
+
+    public void setF1b06a(String f1b06a) {
+        this.f1b06a = f1b06a;
     }
 
     public String getF1b07() {
@@ -770,14 +788,6 @@ public class Form extends LiveData<Form> {
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
         this.username = jsonObject.getString(FormsTable.COLUMN_USERNAME);
         this.sysdate = jsonObject.getString(FormsTable.COLUMN_SYSDATE);
-/*        this.countryCode = jsonObject.getString(FormsTable.COLUMN_COUNTRY_CODE);
-        this.reg_no = jsonObject.getString(FormsTable.COLUMN_REG_NO);
-        this.districtCode = jsonObject.getString(FormsTable.COLUMN_DISTRICT_CODE);
-        this.district = jsonObject.getString(FormsTable.COLUMN_DISTRICT);
-        this.ucCode = jsonObject.getString(FormsTable.COLUMN_UC_CODE);
-        this.uc = jsonObject.getString(FormsTable.COLUMN_UC);
-        this.villageCode = jsonObject.getString(FormsTable.COLUMN_VILLAGE_CODE);
-        this.village = jsonObject.getString(FormsTable.COLUMN_VILLAGE);*/
         this.f1aspecid = jsonObject.getString(FormsTable.COLUMN_F1ASPECID);
         this.f1asite = jsonObject.getString(FormsTable.COLUMN_F1ASITE);
         this.f1bspecid = jsonObject.getString(FormsTable.COLUMN_F1BSPECID);
@@ -818,14 +828,6 @@ public class Form extends LiveData<Form> {
         this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
         this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
-/*        this.countryCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_COUNTRY_CODE));
-        this.reg_no = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_REG_NO));
-        this.districtCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISTRICT_CODE));
-        this.district = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISTRICT));
-        this.ucCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UC_CODE));
-        this.uc = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UC));
-        this.villageCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_VILLAGE_CODE));
-        this.village = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_VILLAGE));*/
         this.f1aspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1ASPECID));
         this.f1asite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1ASITE));
         this.f1bspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1BSPECID));
@@ -900,10 +902,13 @@ public class Form extends LiveData<Form> {
                     .put("f1bsite", f1bsite)
                     .put("f1b01", f1b01)
                     .put("f1b02", f1b02)
+                    .put("f1b02a", f1b02a)
                     .put("f1b03", f1b03)
                     .put("f1b04", f1b04)
                     .put("f1b05", f1b05)
-                    .put("f1b06", f1b06);
+                    .put("f1b06", f1b06)
+                    .put("f1b06a", f1b06a)
+                    .put("f1b07", f1b07);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1028,10 +1033,12 @@ public class Form extends LiveData<Form> {
                 this.f1bsite = json.getString("f1bsite");
                 this.f1b01 = json.getString("f1b01");
                 this.f1b02 = json.getString("f1b02");
+                this.f1b02a = json.getString("f1b02a");
                 this.f1b03 = json.getString("f1b03");
                 this.f1b04 = json.getString("f1b04");
                 this.f1b05 = json.getString("f1b05");
                 this.f1b06 = json.getString("f1b06");
+                this.f1b06a = json.getString("f1b06a");
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -80,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <!-- Site ID   -->
                 <androidx.cardview.widget.CardView
@@ -97,6 +97,12 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bottom"
                             android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Site ID" />
 
                             <TextView
                                 android:layout_width="0dp"
@@ -169,9 +175,10 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-                <!-- f1b01_Start Time  Input   -->
+
+                <!-- f1b02a  Input   -->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/fldGrpCVf1b01_time"
+                    android:id="@+id/fldGrpCVf1b02a"
                     style="@style/cardView">
 
                     <LinearLayout
@@ -179,78 +186,33 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom">
-
-                            <TextView
-                                android:id="@+id/qtxt_cs15"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_toEndOf="@id/q_cs15"
-                                android:text="@string/time" />
-
-                            <TextView
-                                android:id="@+id/q_cs15"
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignTop="@id/qtxt_cs15"
-                                android:layout_alignBottom="@id/qtxt_cs15"
-                                android:text="@string/Q_f1b08" />
-                        </RelativeLayout>
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
                             android:orientation="horizontal">
 
-                            <LinearLayout
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_f1b02a" />
+
+                            <TextView
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/sub_labels"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/startTime" />
-
-                                <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
-                                    android:id="@+id/f1b01_startTime"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:hint="HH:MM"
-                                    app:is24HourView="true"
-                                    app:timeFormat="HH:mm" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/sub_labels"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/endTime" />
-
-                                <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
-                                    android:id="@+id/f1b01_endTime"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:hint="HH:MM"
-                                    app:is24HourView="true"
-                                    app:timeFormat="HH:mm" />
-                            </LinearLayout>
-
+                                android:text="@string/f1b02a" />
                         </LinearLayout>
+
+                        <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
+                            android:id="@+id/f1b02a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="HH:MM"
+                            app:is24HourView="true"
+                            app:timeFormat="HH:mm" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -462,6 +424,46 @@
                             app:maxValue="50"
                             app:minValue="10"
                             app:type="range" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- f1b06a  Input   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVf1b06a"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_f1b06a" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:text="@string/f1b06a" />
+                        </LinearLayout>
+
+                        <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
+                            android:id="@+id/f1b06a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:hint="HH:MM"
+                            app:is24HourView="true"
+                            app:timeFormat="HH:mm" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

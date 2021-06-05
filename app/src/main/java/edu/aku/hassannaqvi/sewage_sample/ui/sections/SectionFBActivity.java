@@ -115,11 +115,21 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
                 : "-1");
 
         form.setF1b01(bi.f1b01.getText().toString());
+
         form.setF1b02(bi.f1b02.getText().toString());
+
+        form.setF1b02a(bi.f1b02a.getText().toString());
+
         form.setF1b03(bi.f1b03.getText().toString());
+
         form.setF1b04(bi.f1b04.getText().toString());
+
         form.setF1b05(bi.f1b05.getText().toString());
+
         form.setF1b06(bi.f1b06.getText().toString());
+
+        form.setF1b06a(bi.f1b06a.getText().toString());
+
         form.setF1b07(bi.f1b07.getText().toString());
 
         form.setsB(form.sBtoString());

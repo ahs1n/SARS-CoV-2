@@ -746,14 +746,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
-/*                FormsTable.COLUMN_COUNTRY_CODE,
-                FormsTable.COLUMN_REG_NO,
-                FormsTable.COLUMN_DISTRICT_CODE,
-                FormsTable.COLUMN_DISTRICT,
-                FormsTable.COLUMN_UC_CODE,
-                FormsTable.COLUMN_UC,
-                FormsTable.COLUMN_VILLAGE_CODE,
-                FormsTable.COLUMN_VILLAGE,*/
                 FormsTable.COLUMN_SA,
                 FormsTable.COLUMN_SB,
                 FormsTable.COLUMN_SC,
@@ -843,14 +835,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_SYSDATE,
-/*                FormsTable.COLUMN_COUNTRY_CODE,
-                FormsTable.COLUMN_REG_NO,
-                FormsTable.COLUMN_DISTRICT_CODE,
-                FormsTable.COLUMN_DISTRICT,
-                FormsTable.COLUMN_UC_CODE,
-                FormsTable.COLUMN_UC,
-                FormsTable.COLUMN_VILLAGE_CODE,
-                FormsTable.COLUMN_VILLAGE,*/
                 FormsTable.COLUMN_SA,
                 FormsTable.COLUMN_SB,
                 FormsTable.COLUMN_SC,
@@ -1376,11 +1360,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 String.format("select * from %s WHERE %s =? AND %s =? AND %s =? AND %s =? AND %s =? AND %s =? AND %s =?",
                         FormsTable.TABLE_NAME,
-/*                        FormsTable.COLUMN_COUNTRY_CODE,
-                        FormsTable.COLUMN_DISTRICT_CODE,
-                        FormsTable.COLUMN_UC_CODE,
-                        FormsTable.COLUMN_VILLAGE_CODE,
-                        FormsTable.COLUMN_REG_NO,*/
                         FormsTable.COLUMN_FORM_TYPE,
                         FormsTable.COLUMN_ISTATUS
                 ),
