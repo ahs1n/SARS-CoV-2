@@ -885,7 +885,8 @@ public class Form extends LiveData<Form> {
                     .put("f1a07", f1a07)
                     .put("f1a08", f1a08)
                     .put("f1a09", f1a09)
-                    .put("f1a10", f1a10);
+                    .put("f1a10", f1a10)
+                    .put("f1a11", f1a11);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -929,7 +930,8 @@ public class Form extends LiveData<Form> {
                     .put("f1c04", f1c04)
                     .put("f1c05", f1c05)
                     .put("f1c06", f1c06)
-                    .put("f1c07", f1c07);
+                    .put("f1c07", f1c07)
+                    .put("f1c08", f1c08);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -1015,6 +1017,7 @@ public class Form extends LiveData<Form> {
                 this.f1a08 = json.getString("f1a08");
                 this.f1a09 = json.getString("f1a09");
                 this.f1a10 = json.getString("f1a10");
+                this.f1a11 = json.getString("f1a11");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -1062,6 +1065,7 @@ public class Form extends LiveData<Form> {
                 this.f1c05 = json.getString("f1c05");
                 this.f1c06 = json.getString("f1c06");
                 this.f1c07 = json.getString("f1c07");
+                this.f1c08 = json.getString("f1c08");
 
             } catch (JSONException e) {
                 e.printStackTrace();
