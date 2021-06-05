@@ -11,19 +11,11 @@ public class FormsContract {
     public static abstract class FormsTable implements BaseColumns {
         public static final String TABLE_NAME = "forms";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "sewage_sample";
+        public static final String COLUMN_PROJECT_NAME = "project_name";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
-        /*public static final String COLUMN_COUNTRY_CODE = "countryCode";
-        public static final String COLUMN_REG_NO = "reg_no";
-        public static final String COLUMN_DISTRICT_CODE = "districtCode";
-        public static final String COLUMN_DISTRICT = "district";
-        public static final String COLUMN_UC_CODE = "ucCode";
-        public static final String COLUMN_UC = "uc";
-        public static final String COLUMN_VILLAGE = "village";
-        public static final String COLUMN_VILLAGE_CODE = "villageCode";*/
         public static final String COLUMN_F1ASPECID = "f1aSpecID";
         public static final String COLUMN_F1ASITE = "f1asite";
         public static final String COLUMN_F1BSPECID = "f1bSpecID";
