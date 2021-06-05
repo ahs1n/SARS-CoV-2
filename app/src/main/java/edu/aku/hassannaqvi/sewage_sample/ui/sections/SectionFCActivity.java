@@ -26,11 +26,13 @@ import edu.aku.hassannaqvi.sewage_sample.databinding.ActivitySectionFcBinding;
 import edu.aku.hassannaqvi.sewage_sample.models.Form;
 import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.sewage_sample.utils.FormState;
+import edu.aku.hassannaqvi.sewage_sample.utils.SimpleCallback;
 
 import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
 import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
 
-public class SectionFCActivity extends AppCompatActivity {
+public class SectionFCActivity extends AppCompatActivity implements SimpleCallback<FormState> {
 
     ActivitySectionFcBinding bi;
     DatabaseHelper db;
@@ -160,6 +162,8 @@ public class SectionFCActivity extends AppCompatActivity {
 
                 String strResult = result.getContents();
                 bi.f1cspecID.setText(strResult);
+                if (!checkQR())
+                    bi.fldGrpCVQRFC.setVisibility(View.GONE);
 
 //                String[] arrContents = strResult.split("-");
 //                bi.f1cspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
@@ -169,9 +173,36 @@ public class SectionFCActivity extends AppCompatActivity {
         }
     }
 
+    private boolean checkQR() {
+        boolean flag = db.checkSampleId_F1C_A(bi.f1cspecID.getText().toString(), this);
+        if (!flag) return false;
+        boolean form = db.checkSampleId_F1C_B(bi.f1cspecID.getText().toString(), this);
+        if (form) {
+            return false;
+        } else {
+            bi.fldGrpCVQRFC.setVisibility(View.VISIBLE);
+            return true;
+        }
+    }
+
     public void scanQR_FC(View view) {
         // Scan QR Code
-//        bi.fldGrpCVQRFC.setVisibility(View.GONE);
+        bi.fldGrpCVQRFC.setVisibility(View.GONE);
         new IntentIntegrator(this).initiateScan();
+    }
+
+    @Override
+    public void invoke(FormState formState) {
+        switch (formState) {
+            case FORMA_NOT_EXIST:
+                AppUtilsKt.toast("Sample Collection form is not exist", this);
+                break;
+            case FORMC_EXIST:
+                AppUtilsKt.toast("This form is already exist", this);
+                break;
+            case INTERNAL_ERROR:
+                AppUtilsKt.toast("Internal error while accessing the cursor", this);
+                break;
+        }
     }
 }

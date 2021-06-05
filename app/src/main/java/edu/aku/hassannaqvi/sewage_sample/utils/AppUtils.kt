@@ -298,6 +298,8 @@ enum class FormState {
     FORMA_EXIST,
     FORMB_NOT_EXIST,
     FORMB_EXIST,
+    FORMC_NOT_EXIST,
+    FORMC_EXIST,
     INTERNAL_ERROR
 }
 

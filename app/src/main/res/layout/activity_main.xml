@@ -489,7 +489,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
                         <LinearLayout
                             android:id="@+id/formcollection"
                             android:layout_width="0dp"

@@ -1431,21 +1431,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     // Check Duplicate Sample ID Form C1
-    public boolean checkSampleId_F1C(String sampleID) throws SQLException {
+    public boolean checkSampleId_F1C_A(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1CSPECID + "=? ", new String[]{sampleID});
+        boolean flag = false;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? ", new String[]{sampleID});
         if (mCursor != null) {
-            /*if (mCursor.moveToFirst()) {
-                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.singleUser.DIST_ID));
-                }*/
-            return mCursor.getCount() > 0;
+            if (mCursor.getCount() > 0) {
+                flag = true;
+                callback.invoke(FormState.FORMA_EXIST);
+            } else
+                callback.invoke(FormState.FORMA_NOT_EXIST);
+            mCursor.close();
+        } else {
+            callback.invoke(FormState.INTERNAL_ERROR);
         }
-        return false;
+        return flag;
     }
 
-
-
+    public boolean checkSampleId_F1C_B(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean flag = false;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1CSPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            if (mCursor.getCount() > 0) {
+                flag = true;
+                callback.invoke(FormState.FORMC_EXIST);
+            } else
+                callback.invoke(FormState.FORMC_NOT_EXIST);
+            mCursor.close();
+        } else {
+            callback.invoke(FormState.INTERNAL_ERROR);
+        }
+        return flag;
+    }
 
     /*public boolean checkSampleId(String sampleID) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
