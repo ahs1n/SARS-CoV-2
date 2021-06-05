@@ -933,7 +933,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     //Generic Un-Synced Forms
-    public void updateSyncedWScreening(String id) {
+    public void updateSyncedSectionC(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // New value for one column
         ContentValues values = new ContentValues();
@@ -951,7 +951,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedCScreening(String id) {
+    public void updateSyncedSectionA(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // New value for one column
         ContentValues values = new ContentValues();
@@ -987,7 +987,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedCFollowup(String id) {
+    public void updateSyncedSectionB(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         // New value for one column
         ContentValues values = new ContentValues();

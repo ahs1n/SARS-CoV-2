@@ -50,7 +50,6 @@ import edu.aku.hassannaqvi.sewage_sample.utils.shared.SharedStorage;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_A;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_B;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_C;
-import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.WRA_FOLLOWUP_TYPE;
 import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.appInfo;
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.PROJECT_NAME;
 
@@ -214,17 +213,14 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                 }
 
                 switch (fc.getFormType()) {
-                    case SECTION_C:
-                        formType = "WScreening";
-                        break;
                     case SECTION_A:
-                        formType = "CScreening";
-                        break;
-                    case WRA_FOLLOWUP_TYPE:
-                        formType = "WFollowup";
+                        formType = "SectionA";
                         break;
                     case SECTION_B:
-                        formType = "CFollowup";
+                        formType = "SectionB";
+                        break;
+                    case SECTION_C:
+                        formType = "SectionC";
                         break;
                     default:
                         formType = "NA";

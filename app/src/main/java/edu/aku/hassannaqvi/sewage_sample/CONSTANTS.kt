@@ -22,7 +22,6 @@ class CONSTANTS {
         const val SECTION_A = "SC"
         const val SECTION_B = "FL"
         const val SECTION_C = "TR"
-        const val WRA_FOLLOWUP_TYPE = "M102"
 
 
         //MainActivity

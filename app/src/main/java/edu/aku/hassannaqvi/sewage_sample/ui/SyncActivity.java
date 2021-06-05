@@ -44,7 +44,6 @@ import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.FOLLOWUP_FLAG;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_A;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_B;
 import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_C;
-import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.WRA_FOLLOWUP_TYPE;
 import static edu.aku.hassannaqvi.sewage_sample.utils.AndroidUtilityKt.isNetworkConnected;
 import static edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt.dbBackup;
 
@@ -122,7 +121,7 @@ public class SyncActivity extends AppCompatActivity {
                 MainApp.uploadData.clear();
                 // Set tables to UPLOAD
 
-                String[][] tables = {{"WScreening", SECTION_C}, {"CScreening", SECTION_A}, {"WFollowup", WRA_FOLLOWUP_TYPE}, {"CFollowup", SECTION_B}};
+                String[][] tables = {{"SectionC", SECTION_C}, {"SectionA", SECTION_A}, {"SectionB", SECTION_B}};
 
                 for (String[] table : tables) {
                     uploadTables.add(new SyncModel(table[0]));
