@@ -1451,6 +1451,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean checkSampleId_F1C_B(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
         SQLiteDatabase db = this.getReadableDatabase();
         boolean flag = false;
+        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1BSPECID + "=? ", new String[]{sampleID});
+        if (mCursor != null) {
+            if (mCursor.getCount() > 0) {
+                flag = true;
+                callback.invoke(FormState.FORMB_EXIST);
+            } else
+                callback.invoke(FormState.FORMB_NOT_EXIST);
+            mCursor.close();
+        } else {
+            callback.invoke(FormState.INTERNAL_ERROR);
+        }
+        return flag;
+    }
+
+    public boolean checkSampleId_F1C_C(String sampleID, SimpleCallback<FormState> callback) throws SQLException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean flag = false;
         Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1CSPECID + "=? ", new String[]{sampleID});
         if (mCursor != null) {
             if (mCursor.getCount() > 0) {

@@ -156,7 +156,7 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                AppUtilsKt.toast("Cancelled", this);
             } else {
 //                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
@@ -173,10 +173,14 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
         }
     }
 
+
     private boolean checkQR() {
         boolean flag = db.checkSampleId_F1C_A(bi.f1cspecID.getText().toString(), this);
         if (!flag) return false;
-        boolean form = db.checkSampleId_F1C_B(bi.f1cspecID.getText().toString(), this);
+        boolean flag_b = db.checkSampleId_F1C_B(bi.f1cspecID.getText().toString(), this);
+        if (!flag_b) return false;
+
+        boolean form = db.checkSampleId_F1C_C(bi.f1cspecID.getText().toString(), this);
         if (form) {
             return false;
         } else {
@@ -185,17 +189,22 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
         }
     }
 
+
     public void scanQR_FC(View view) {
         // Scan QR Code
         bi.fldGrpCVQRFC.setVisibility(View.GONE);
         new IntentIntegrator(this).initiateScan();
     }
 
+
     @Override
     public void invoke(FormState formState) {
         switch (formState) {
             case FORMA_NOT_EXIST:
                 AppUtilsKt.toast("Sample Collection form is not exist", this);
+                break;
+            case FORMB_NOT_EXIST:
+                AppUtilsKt.toast("Please Enter the Filtration form first", this);
                 break;
             case FORMC_EXIST:
                 AppUtilsKt.toast("This form is already exist", this);
