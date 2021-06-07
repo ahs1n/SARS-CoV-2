@@ -1481,34 +1481,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return flag;
     }
-
-    /*public boolean checkSampleId(String sampleID) throws SQLException {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? AND " + FormsTable.COLUMN_ISTATUS + "=?", new String[]{sampleID, "1"});
-        if (mCursor != null) {
-
-            *//*if (mCursor.moveToFirst()) {
-                    MainApp.DIST_ID = mCursor.getString(mCursor.getColumnIndex(UsersContract.singleUser.DIST_ID));
-                }*//*
-            return mCursor.getCount() > 0;
-        }
-        return false;
-    }*/
-
-
-    /*public Form checkSampleId(String hfCode, String status, String cons) throws SQLException {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Form form = null;
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=? AND " + FormsTable.COLUMN_ISTATUS + " != ?", new String[]{hfCode, status});
-        if (mCursor != null) {
-            if (mCursor.getCount() == 0) return Form.getInstance();
-            if (mCursor.moveToFirst()) {
-                form = Form.getInstance().Hydrate(mCursor, cons);
-                //form = Form.getInstance().hydrate(mCursor);
-            }
-        }
-        return form;
-    }*/
-
 }

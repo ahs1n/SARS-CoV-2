@@ -13,6 +13,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -89,6 +90,25 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
 
 
     private void setUIContent() {
+
+     /*   bi.f1b02a.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                bi.f1b06a.setText(null);
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });*/
+
     }
 
 
@@ -137,7 +157,35 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
 
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName))
+            return false;
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+//        Toast.makeText(this, bi.f1b02a.getText().toString() + " | " + bi.f1b06a.getText().toString(), Toast.LENGTH_SHORT).show();
+
+        Date date1, date2;
+        long difference = 0;
+        try {
+            date1 = simpleDateFormat.parse(bi.f1b02a.getText().toString());
+            date2 = simpleDateFormat.parse(bi.f1b06a.getText().toString());
+            difference = date2.getTime() - date1.getTime();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, String.valueOf(difference), Toast.LENGTH_SHORT).show();
+        if (difference < 0) {
+            return Validator.emptyCustomTextBox(this, bi.f1b06a, "Filtration End time cannot be greater than Filtration Start time");
+        }
+
+        if (Integer.parseInt(bi.f1b04.getText().toString()) > Integer.parseInt(bi.f1b03.getText().toString())) {
+            return Validator.emptyCustomTextBox(this, bi.f1b04, "F1B04 cannot be greater than F1B03");
+        }
+
+        if (Integer.parseInt(bi.f1b05.getText().toString()) > Integer.parseInt(bi.f1b04.getText().toString())) {
+            return Validator.emptyCustomTextBox(this, bi.f1b05, "F1B05 cannot be greater than F1B04");
+        }
+        return true;
     }
 
 
@@ -160,6 +208,7 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
                 bi.f1bspecID.setText(strResult);
                 if (!checkQR())
                     bi.fldGrpCVQRFB.setVisibility(View.GONE);
+
 //                String[] arrContents = strResult.split("-");
 //                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }

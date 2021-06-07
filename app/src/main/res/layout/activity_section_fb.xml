@@ -4,9 +4,11 @@
     <data>
 
         <import type="android.view.View" />
-        <!--<variable
+
+        <variable
             name="form"
-            type="edu.aku.hassannaqvi.pathcovid.models.Form" />-->
+            type="edu.aku.hassannaqvi.sewage_sample.models.Form" />
+
         <variable
             name="callback"
             type="edu.aku.hassannaqvi.sewage_sample.ui.sections.SectionFBActivity" />
@@ -172,7 +174,7 @@
                             android:hint="DD/MM/YYYY"
                             app:dateFormat="dd-MM-yyyy"
                             app:maxDate="CR_DATE"
-                            app:minDate="01/06/2021" />
+                            app:minDate="CR_DATE" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -463,6 +465,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:hint="HH:MM"
+                            android:text='@{f1b02a.text.toString().equals("")?"":null}'
                             app:is24HourView="true"
                             app:timeFormat="HH:mm" />
                     </LinearLayout>

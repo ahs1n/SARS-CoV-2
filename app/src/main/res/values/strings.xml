@@ -70,8 +70,8 @@
     <string name="newHHheadname"> Name of new head of the household </string>
     <string name="specID"> Specimen ID </string>
     <string name="siteID"> Site ID </string>
-    <string name="siteID_a"> Site A </string>
-    <string name="siteID_b"> Site B </string>
+    <string name="siteID_a"> Teen Hatti </string>
+    <string name="siteID_b"> Garden West </string>
     <string name="f1a01">Date field sample collected (dd:mm:yy)             </string>
     <string name="f1a02"> Time of arrival at site (24 Hour Clock)             </string>
     <string name="f1a03">Location (street, locality, landmark)</string>

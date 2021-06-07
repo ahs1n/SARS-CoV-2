@@ -14,6 +14,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -136,7 +137,28 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName))
+            return false;
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+//        Toast.makeText(this, bi.f1b02a.getText().toString() + " | " + bi.f1b06a.getText().toString(), Toast.LENGTH_SHORT).show();
+
+        Date date1, date2;
+        long difference = 0;
+        try {
+            date1 = simpleDateFormat.parse(bi.f1a02.getText().toString());
+            date2 = simpleDateFormat.parse(bi.f1a09.getText().toString());
+            difference = date2.getTime() - date1.getTime();
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, String.valueOf(difference), Toast.LENGTH_SHORT).show();
+        if (difference < 0) {
+            return Validator.emptyCustomTextBox(this, bi.f1a09, "Time Collected cannot be greater than Arrival time");
+        }
+
+        return true;
     }
 
 
