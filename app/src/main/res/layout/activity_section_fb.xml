@@ -178,7 +178,6 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
-
                 <!-- f1b02a  Input   -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVf1b02a"
@@ -218,7 +217,6 @@
                             app:timeFormat="HH:mm" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
 
                 <!-- f1b02  Input   -->
                 <androidx.cardview.widget.CardView
