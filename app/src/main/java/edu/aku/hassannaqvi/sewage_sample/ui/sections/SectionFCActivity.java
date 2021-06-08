@@ -165,7 +165,15 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
                 if (!checkQR())
                     bi.fldGrpCVQRFC.setVisibility(View.GONE);
 
-//                String[] arrContents = strResult.split("-");
+                try {
+                    String[] arrContents = strResult.split("-");
+                    bi.f1csiteA.setChecked(arrContents[2].equals("S1"));
+                    bi.f1csiteB.setChecked(arrContents[2].equals("S2"));
+                } catch (Exception e) {
+                    Toast.makeText(this, "Invalid ID", Toast.LENGTH_SHORT).show();
+                    bi.fldGrpCVQRFC.setVisibility(View.GONE);
+                }
+
 //                bi.f1cspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
         } else {

@@ -218,7 +218,15 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
                 bi.f1aspecID.setText(strResult);
                 if (!checkQR())
                     bi.fldGrpCVQR.setVisibility(View.GONE);
-//                String[] arrContents = strResult.split("-");
+
+                try {
+                    String[] arrContents = strResult.split("-");
+                    bi.f1asiteA.setChecked(arrContents[2].equals("S1"));
+                    bi.f1asiteB.setChecked(arrContents[2].equals("S2"));
+                } catch (Exception e) {
+                    Toast.makeText(this, "Invalid ID", Toast.LENGTH_SHORT).show();
+                    bi.fldGrpCVQR.setVisibility(View.GONE);
+                }
 //                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
         } else {
@@ -231,7 +239,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
             Toast.makeText(this, "Already Exist", Toast.LENGTH_SHORT).show();
             return false;
         } else {
-            Toast.makeText(this, "Not Exist", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Not Exist", Toast.LENGTH_SHORT).show();
             bi.fldGrpCVQR.setVisibility(View.VISIBLE);
             return true;
         }

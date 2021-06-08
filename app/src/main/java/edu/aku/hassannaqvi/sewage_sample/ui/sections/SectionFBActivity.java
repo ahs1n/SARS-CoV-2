@@ -167,6 +167,7 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
             return Validator.emptyCustomTextBox(this, bi.f1b05, "F1B05 cannot be greater than F1B04");
         }
         return true;
+
     }
 
 
@@ -190,7 +191,15 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
                 if (!checkQR())
                     bi.fldGrpCVQRFB.setVisibility(View.GONE);
 
-//                String[] arrContents = strResult.split("-");
+                try {
+                    String[] arrContents = strResult.split("-");
+                    bi.f1bsiteA.setChecked(arrContents[2].equals("S1"));
+                    bi.f1bsiteB.setChecked(arrContents[2].equals("S2"));
+                } catch (Exception e) {
+                    Toast.makeText(this, "Invalid ID", Toast.LENGTH_SHORT).show();
+                    bi.fldGrpCVQRFB.setVisibility(View.GONE);
+                }
+
 //                bi.f1aspecID.setText("Ctry: " + arrContents[0] + " | " + "City: " + arrContents[1] + " | " + "Site: " + arrContents[2] + " | " + "ID: " + arrContents[3]);
             }
         } else {
