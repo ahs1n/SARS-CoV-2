@@ -208,6 +208,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:hint="HH:MM"
+                            app:is24HourView="true"
                             app:timeFormat="HH:mm" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -517,6 +518,7 @@
                             android:gravity="center"
                             android:hint="HH:MM"
                             android:text='@{f1a02.text.toString().equals("")?"":null}'
+                            app:is24HourView="true"
                             app:timeFormat="HH:mm" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

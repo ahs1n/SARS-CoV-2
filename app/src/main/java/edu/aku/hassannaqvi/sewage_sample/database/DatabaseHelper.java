@@ -30,6 +30,9 @@ import edu.aku.hassannaqvi.sewage_sample.models.VersionApp.VersionAppTable;
 import edu.aku.hassannaqvi.sewage_sample.utils.FormState;
 import edu.aku.hassannaqvi.sewage_sample.utils.SimpleCallback;
 
+import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_A;
+import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_B;
+import static edu.aku.hassannaqvi.sewage_sample.CONSTANTS.SECTION_C;
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.sewage_sample.utils.CreateTable.SQL_CREATE_FORMS;
@@ -632,13 +635,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allForms;
     }
 
-    public Collection<Form> getTodayForms(String countryCode, String sysdate) {
+    public Collection<Form> getTodayForms(String specID, String sysdate) {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = null;
         String whereClause = FormsTable.COLUMN_SYNCED + " =? AND " + FormsTable.COLUMN_ISTATUS + " Like ? ";
-        String[] whereArgs = {countryCode, "%" + sysdate + " %"};
+        String[] whereArgs = {specID, "%" + sysdate + " %"};
         String groupBy = null;
         String having = null;
         String orderBy = FormsTable.COLUMN_ID + " ASC";
@@ -657,21 +660,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Form form = new Form().Hydrate(c, c.getString(c.getColumnIndex(FormsTable.COLUMN_FORM_TYPE)));
 
                 switch (form.getFormType()) {
-/*                    case SECTION_C:
-                        form.setName(form.getWs11());
-                        break;
                     case SECTION_A:
-                        form.setName(form.getCs11());
-                        break;
-                    case WRA_FOLLOWUP_TYPE:
-                        form.setName(form.getFw11());
+                        form.setName(form.getF1aspecid());
                         break;
                     case SECTION_B:
-                        form.setName(form.getFc15());
+                        form.setName(form.getF1bspecid());
+                        break;
+                    case SECTION_C:
+                        form.setName(form.getF1cspecid());
                         break;
                     default:
                         form.setName("");
-                        break;*/
+                        break;
                 }
 
                 allForms.add(form);

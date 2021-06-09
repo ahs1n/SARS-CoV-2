@@ -173,7 +173,7 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
         }
         Toast.makeText(this, String.valueOf(difference), Toast.LENGTH_SHORT).show();
         if (difference < 0) {
-            return Validator.emptyCustomTextBox(this, bi.f1b06a, "Filtration End time cannot be greater than Filtration Start time");
+            return Validator.emptyCustomTextBox(this, bi.f1b06a, "Filtration End time cannot be less than Filtration Start time");
         }
 
         if (Integer.parseInt(bi.f1b04.getText().toString()) > Integer.parseInt(bi.f1b03.getText().toString())) {

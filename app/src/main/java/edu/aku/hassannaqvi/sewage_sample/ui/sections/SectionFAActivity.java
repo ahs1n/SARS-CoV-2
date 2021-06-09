@@ -155,7 +155,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         }
         Toast.makeText(this, String.valueOf(difference), Toast.LENGTH_SHORT).show();
         if (difference < 0) {
-            return Validator.emptyCustomTextBox(this, bi.f1a09, "Time Collected cannot be greater than Arrival time");
+            return Validator.emptyCustomTextBox(this, bi.f1a09, "Time Collected cannot be less than Arrival time");
         }
 
         return true;
