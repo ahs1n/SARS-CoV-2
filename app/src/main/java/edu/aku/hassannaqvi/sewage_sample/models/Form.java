@@ -899,9 +899,7 @@ public class Form extends LiveData<Form> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("f1bspecid", f1bspecid)
-                    .put("f1bsite", f1bsite)
-                    .put("f1b01", f1b01)
+            json.put("f1b01", f1b01)
                     .put("f1b02", f1b02)
                     .put("f1b02a", f1b02a)
                     .put("f1b03", f1b03)
@@ -922,9 +920,7 @@ public class Form extends LiveData<Form> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("f1cspecid", f1cspecid)
-                    .put("f1csite", f1csite)
-                    .put("f1c01", f1c01)
+            json.put("f1c01", f1c01)
                     .put("f1c02", f1c02)
                     .put("f1c03", f1c03)
                     .put("f1c04", f1c04)
@@ -1030,10 +1026,7 @@ public class Form extends LiveData<Form> {
         if (string != null) {
 
             try {
-
                 JSONObject json = new JSONObject(string);
-                this.f1bspecid = json.getString("f1bspecid");
-                this.f1bsite = json.getString("f1bsite");
                 this.f1b01 = json.getString("f1b01");
                 this.f1b02 = json.getString("f1b02");
                 this.f1b02a = json.getString("f1b02a");
@@ -1056,8 +1049,6 @@ public class Form extends LiveData<Form> {
             try {
 
                 JSONObject json = new JSONObject(string);
-                this.f1cspecid = json.getString("f1cspecid");
-                this.f1csite = json.getString("f1csite");
                 this.f1c01 = json.getString("f1c01");
                 this.f1c02 = json.getString("f1c02");
                 this.f1c03 = json.getString("f1c03");

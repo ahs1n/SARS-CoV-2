@@ -121,7 +121,7 @@ public class SyncActivity extends AppCompatActivity {
                 MainApp.uploadData.clear();
                 // Set tables to UPLOAD
 
-                String[][] tables = {{"SectionC", SECTION_C}, {"SectionA", SECTION_A}, {"SectionB", SECTION_B}};
+                String[][] tables = {{"SectionA", SECTION_A}, {"SectionB", SECTION_B}, {"SectionC", SECTION_C}};
 
                 for (String[] table : tables) {
                     uploadTables.add(new SyncModel(table[0]));
