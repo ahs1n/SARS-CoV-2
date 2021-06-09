@@ -18,7 +18,7 @@ class CONSTANTS {
         const val ITEM_DATA = "item_data"
         const val FOLLOWUP_FLAG = "followup_flag"
 
-        //TYPE_COUNTERS
+        //Form Type
         const val SECTION_A = "SC"
         const val SECTION_B = "FL"
         const val SECTION_C = "TR"

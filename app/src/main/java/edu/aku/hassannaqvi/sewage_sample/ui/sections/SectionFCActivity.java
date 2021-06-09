@@ -158,8 +158,6 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
             if (result.getContents() == null) {
                 AppUtilsKt.toast("Cancelled", this);
             } else {
-//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-
                 String strResult = result.getContents();
                 bi.f1cspecID.setText(strResult);
                 if (!checkQR())

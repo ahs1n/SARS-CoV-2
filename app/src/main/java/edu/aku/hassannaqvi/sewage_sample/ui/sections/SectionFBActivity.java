@@ -13,6 +13,8 @@ import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
+import org.json.JSONException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,8 +47,15 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_fb);
         bi.setCallback(this);
         this.setTitle(getString(R.string.sectionii_mainheading));
-        setupSkips();
         setUIContent();
+
+
+/*        try {
+            new JSONObject(form.sAtoString()).get("f1b03").equals("");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
 
         //DB
         db = MainApp.appInfo.getDbHelper();
@@ -55,10 +64,18 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
         new IntentIntegrator(this).initiateScan(); // `this` is the current Activity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        setupSkips();
     }
 
 
     private void setupSkips() {
+        String s = "0";
+        try {
+            s = db.getF1aBySampleId(bi.f1bspecID.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        bi.f1b03.setMaxvalue(Float.parseFloat(s));
     }
 
 
@@ -184,12 +201,14 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
             if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-//                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
                 String strResult = result.getContents();
                 bi.f1bspecID.setText(strResult);
                 if (!checkQR())
                     bi.fldGrpCVQRFB.setVisibility(View.GONE);
+                else {
+                    setupSkips();
+                }
 
                 try {
                     String[] arrContents = strResult.split("-");

@@ -11,6 +11,7 @@ import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -1480,5 +1481,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             callback.invoke(FormState.INTERNAL_ERROR);
         }
         return flag;
+    }
+
+
+    //    Get the Sample volume data from Form A
+    public String getF1aBySampleId(String sid) throws SQLException, JSONException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String s = null;
+        Cursor c = db.rawQuery("SELECT " + FormsTable.COLUMN_SA + " FROM " + FormsTable.TABLE_NAME + " WHERE " + FormsTable.COLUMN_F1ASPECID + "=?", new String[]{sid});
+
+        while (c.moveToNext()) {
+            s = (String) new JSONObject(c.getString(0)).get("f1a10");
+        }
+        c.close();
+
+        return s;
     }
 }
