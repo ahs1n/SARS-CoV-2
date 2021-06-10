@@ -19,9 +19,9 @@ import edu.aku.hassannaqvi.sewage_sample.models.Users;
 public class MainApp extends Application {
 
     public static final String TAG = "AppMain";
-    //    public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
-    public static final String _IP = "http://f38158";// .TEST server
-    public static final String _HOST_URL = MainApp._IP + "/prosystem/api/";// .TEST server;
+    public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
+    //    public static final String _IP = "http://f38158";// .TEST server
+    public static final String _HOST_URL = MainApp._IP + "/pathcov/api/";// .TEST server;
     public static final String _SERVER_URL = "sync.php";
     public static final String _SERVER_GET_URL = "getData.php";
     //    public static final String _PHOTO_UPLOAD_URL = MainApp._IP + "/casi_gm/api/uploads.php";

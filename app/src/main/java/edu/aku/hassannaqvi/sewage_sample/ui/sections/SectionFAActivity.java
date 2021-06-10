@@ -99,6 +99,11 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
         form.setFormType(CONSTANTS.SECTION_A);
 
+        form.setSpecimenID(bi.f1aspecID.getText().toString());
+        form.setSiteID(bi.f1asiteA.isChecked() ? "1"
+                : bi.f1asiteB.isChecked() ? "2"
+                : "-1");
+
         form.setF1aspecid(bi.f1aspecID.getText().toString());
 
         form.setF1asite(bi.f1asiteA.isChecked() ? "1"
@@ -140,7 +145,7 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         if (!Validator.emptyCheckingContainer(this, bi.GrpName))
             return false;
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
 //        Toast.makeText(this, bi.f1b02a.getText().toString() + " | " + bi.f1b06a.getText().toString(), Toast.LENGTH_SHORT).show();
 
         Date date1, date2;

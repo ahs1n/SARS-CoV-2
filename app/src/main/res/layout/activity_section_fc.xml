@@ -388,11 +388,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:hint="##"
+                            android:hint="##.##"
                             android:inputType="number"
-                            android:maxLength="2"
-                            app:maxValue="71"
-                            app:minValue="1"
+                            android:maxLength="3"
+                            app:mask="##.##"
+                            app:maxValue="60.00"
+                            app:minValue="1.00"
+                            app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

@@ -19,6 +19,8 @@ object CreateTable {
             + FormsTable.COLUMN_SYSDATE + " TEXT,"
             + FormsTable.COLUMN_UID + " TEXT,"
             + FormsTable.COLUMN_USERNAME + " TEXT,"
+            + FormsTable.COLUMN_SPECIMEN_ID + " TEXT,"
+            + FormsTable.COLUMN_SITE_ID + " TEXT,"
             + FormsTable.COLUMN_F1ASPECID + " TEXT,"
             + FormsTable.COLUMN_F1ASITE + " TEXT,"
             + FormsTable.COLUMN_SA + " TEXT,"
@@ -39,14 +41,6 @@ object CreateTable {
             + FormsTable.COLUMN_SYNCED + " TEXT,"
             + FormsTable.COLUMN_SYNCED_DATE + " TEXT,"
             + FormsTable.COLUMN_FORM_TYPE + " TEXT"
-/*            + FormsTable.COLUMN_COUNTRY_CODE + " TEXT,"
-            + FormsTable.COLUMN_REG_NO + " TEXT,"
-            + FormsTable.COLUMN_DISTRICT_CODE + " TEXT,"
-            + FormsTable.COLUMN_DISTRICT + " TEXT,"
-            + FormsTable.COLUMN_UC_CODE + " TEXT,"
-            + FormsTable.COLUMN_UC + " TEXT,"
-            + FormsTable.COLUMN_VILLAGE_CODE + " TEXT,"
-            + FormsTable.COLUMN_VILLAGE + " TEXT,"*/
             + " );")
 
     const val SQL_CREATE_USERS = ("CREATE TABLE " + UsersTable.TABLE_NAME + "("

@@ -22,6 +22,10 @@ public class FormsContract {
         public static final String COLUMN_F1BSITE = "f1bsite";
         public static final String COLUMN_F1CSPECID = "f1cSpecID";
         public static final String COLUMN_F1CSITE = "f1csite";
+
+        public static final String COLUMN_SPECIMEN_ID = "specimen";
+        public static final String COLUMN_SITE_ID = "site_id";
+
         public static final String COLUMN_SA = "sA";
         public static final String COLUMN_SB = "sB";
         public static final String COLUMN_SC = "sC";

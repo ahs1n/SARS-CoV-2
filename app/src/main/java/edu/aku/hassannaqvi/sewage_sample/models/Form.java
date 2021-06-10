@@ -72,6 +72,27 @@ public class Form extends LiveData<Form> {
     private String f1a09;
     private String f1a10;
     private String f1a11;
+
+    private String specimenID;
+    private String siteID;
+
+    public String getSpecimenID() {
+        return specimenID;
+    }
+
+    public void setSpecimenID(String specimenID) {
+        this.specimenID = specimenID;
+    }
+
+    public String getSiteID() {
+        return siteID;
+    }
+
+    public void setSiteID(String siteID) {
+        this.siteID = siteID;
+    }
+
+
     private String istatus = ""; // Interview Status
     private String istatus96x = ""; // Interview Status
     private String endingdatetime = "";
@@ -795,6 +816,9 @@ public class Form extends LiveData<Form> {
         this.f1cspecid = jsonObject.getString(FormsTable.COLUMN_F1CSPECID);
         this.f1csite = jsonObject.getString(FormsTable.COLUMN_F1CSITE);
 
+        this.specimenID = jsonObject.getString(FormsTable.COLUMN_SPECIMEN_ID);
+        this.siteID = jsonObject.getString(FormsTable.COLUMN_SITE_ID);
+
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
@@ -834,6 +858,9 @@ public class Form extends LiveData<Form> {
         this.f1bsite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1BSITE));
         this.f1cspecid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1CSPECID));
         this.f1csite = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_F1CSITE));
+
+        this.specimenID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SPECIMEN_ID));
+        this.siteID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SITE_ID));
 
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
@@ -951,6 +978,9 @@ public class Form extends LiveData<Form> {
             json.put(FormsTable.COLUMN_F1BSITE, this.f1bsite == null ? JSONObject.NULL : this.f1bsite);
             json.put(FormsTable.COLUMN_F1CSPECID, this.f1cspecid == null ? JSONObject.NULL : this.f1cspecid);
             json.put(FormsTable.COLUMN_F1CSITE, this.f1csite == null ? JSONObject.NULL : this.f1csite);
+
+            json.put(FormsTable.COLUMN_SPECIMEN_ID, this.specimenID == null ? JSONObject.NULL : this.specimenID);
+            json.put(FormsTable.COLUMN_SITE_ID, this.siteID == null ? JSONObject.NULL : this.siteID);
 
 
             switch (type) {

@@ -103,6 +103,10 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
         form.setUsername(MainApp.user.getUserName());
 
         form.setFormType(CONSTANTS.SECTION_C);
+        form.setSpecimenID(bi.f1cspecID.getText().toString());
+        form.setSiteID(bi.f1csiteA.isChecked() ? "1"
+                : bi.f1csiteB.isChecked() ? "2"
+                : "-1");
 
         form.setF1cspecid(bi.f1cspecID.getText().toString());
 

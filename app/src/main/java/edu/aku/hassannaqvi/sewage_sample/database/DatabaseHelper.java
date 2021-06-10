@@ -330,6 +330,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_F1CSPECID, form.getF1cspecid());
         values.put(FormsTable.COLUMN_F1CSITE, form.getF1csite());
 
+
+        values.put(FormsTable.COLUMN_SPECIMEN_ID, form.getSpecimenID());
+        values.put(FormsTable.COLUMN_SITE_ID, form.getSiteID());
+
         values.put(FormsTable.COLUMN_SA, form.getsA());
         values.put(FormsTable.COLUMN_SB, form.getsB());
         values.put(FormsTable.COLUMN_SC, form.getsC());

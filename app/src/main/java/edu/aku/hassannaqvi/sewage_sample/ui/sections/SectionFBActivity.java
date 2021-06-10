@@ -125,6 +125,10 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
         form.setUsername(MainApp.user.getUserName());
 
         form.setFormType(CONSTANTS.SECTION_B);
+        form.setSpecimenID(bi.f1bspecID.getText().toString());
+        form.setSiteID(bi.f1bsiteA.isChecked() ? "1"
+                : bi.f1bsiteB.isChecked() ? "2"
+                : "-1");
 
         form.setF1bspecid(bi.f1bspecID.getText().toString());
 
@@ -176,11 +180,11 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
             return Validator.emptyCustomTextBox(this, bi.f1b06a, "Filtration End time cannot be less than Filtration Start time");
         }
 
-        if (Integer.parseInt(bi.f1b04.getText().toString()) > Integer.parseInt(bi.f1b03.getText().toString())) {
+        if (Float.parseFloat(bi.f1b04.getText().toString()) > Float.parseFloat(bi.f1b03.getText().toString())) {
             return Validator.emptyCustomTextBox(this, bi.f1b04, "F1B04 cannot be greater than F1B03");
         }
 
-        if (Integer.parseInt(bi.f1b05.getText().toString()) > Integer.parseInt(bi.f1b04.getText().toString())) {
+        if (Float.parseFloat(bi.f1b05.getText().toString()) > Float.parseFloat(bi.f1b04.getText().toString())) {
             return Validator.emptyCustomTextBox(this, bi.f1b05, "F1B05 cannot be greater than F1B04");
         }
         return true;
