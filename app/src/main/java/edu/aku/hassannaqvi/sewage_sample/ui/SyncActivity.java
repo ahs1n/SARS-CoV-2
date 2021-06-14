@@ -128,6 +128,7 @@ public class SyncActivity extends AppCompatActivity {
                     MainApp.uploadData.add(db.getUnsyncedForms(table[1]));
                 }
 
+                MainApp.downloadData = new String[uploadTables.size()];
                 setAdapter(uploadTables);
                 BeginUpload();
                 break;
@@ -368,7 +369,7 @@ public class SyncActivity extends AppCompatActivity {
                         int sDuplicate = 0;
                         StringBuilder sSyncedError = new StringBuilder();
                         JSONArray json;
-
+                        result = MainApp.downloadData[position];
                         if (result != null) {
                             if (result.length() > 0) {
                                 try {

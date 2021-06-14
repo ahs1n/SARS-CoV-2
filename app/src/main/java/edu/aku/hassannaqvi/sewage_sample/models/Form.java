@@ -1065,6 +1065,7 @@ public class Form extends LiveData<Form> {
                 this.f1b05 = json.getString("f1b05");
                 this.f1b06 = json.getString("f1b06");
                 this.f1b06a = json.getString("f1b06a");
+                this.f1b07 = json.getString("f1b07");
 
             } catch (JSONException e) {
                 e.printStackTrace();
