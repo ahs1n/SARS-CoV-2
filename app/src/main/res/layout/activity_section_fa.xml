@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -81,7 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <!-- Site ID   -->
                 <androidx.cardview.widget.CardView
@@ -98,6 +100,12 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/bottom"
                             android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Site ID" />
 
                             <TextView
                                 android:layout_width="0dp"
@@ -477,8 +485,8 @@
                             android:inputType="number"
                             android:maxLength="3"
                             app:mask="##.##"
-                            app:maxValue="20.00"
-                            app:minValue="1.00"
+                            app:maxValue="14.00"
+                            app:minValue="00.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
@@ -564,7 +572,7 @@
                             android:maxLength="3"
                             app:mask="##.##"
                             app:maxValue="10.00"
-                            app:minValue="1.00"
+                            app:minValue="6.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
