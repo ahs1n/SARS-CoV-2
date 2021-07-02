@@ -76,6 +76,7 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
             e.printStackTrace();
         }
         bi.f1b03.setMaxvalue(Float.parseFloat(s));
+//        bi.f1b03.setMaxvalue(Float.parseFloat(s)-1);
     }
 
 
@@ -162,7 +163,7 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
         if (!Validator.emptyCheckingContainer(this, bi.GrpName))
             return false;
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:MM");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
 //        Toast.makeText(this, bi.f1b02a.getText().toString() + " | " + bi.f1b06a.getText().toString(), Toast.LENGTH_SHORT).show();
 
         Date date1, date2;
