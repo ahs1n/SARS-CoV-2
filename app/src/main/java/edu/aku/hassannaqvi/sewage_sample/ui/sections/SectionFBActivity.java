@@ -13,8 +13,6 @@ import com.google.zxing.integration.android.IntentResult;
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
-import org.json.JSONException;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -69,13 +67,13 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
 
 
     private void setupSkips() {
-        String s = "0";
+/*        String s = "0";
         try {
             s = db.getF1aBySampleId(bi.f1bspecID.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        bi.f1b03.setMaxvalue(Float.parseFloat(s));
+        bi.f1b03.setMaxvalue(Float.parseFloat(s));*/
 //        bi.f1b03.setMaxvalue(Float.parseFloat(s)-1);
     }
 
@@ -181,9 +179,9 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
             return Validator.emptyCustomTextBox(this, bi.f1b06a, "Filtration End time cannot be less than Filtration Start time");
         }
 
-        if (Float.parseFloat(bi.f1b04.getText().toString()) > Float.parseFloat(bi.f1b03.getText().toString())) {
+        /*if (Float.parseFloat(bi.f1b04.getText().toString()) > Float.parseFloat(bi.f1b03.getText().toString())) {
             return Validator.emptyCustomTextBox(this, bi.f1b04, "F1B04 cannot be greater than F1B03");
-        }
+        }*/
 
         if (Float.parseFloat(bi.f1b05.getText().toString()) > Float.parseFloat(bi.f1b04.getText().toString())) {
             return Validator.emptyCustomTextBox(this, bi.f1b05, "F1B05 cannot be greater than F1B04");

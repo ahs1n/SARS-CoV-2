@@ -296,8 +296,8 @@
                             android:inputType="number"
                             android:maxLength="3"
                             app:mask="##.##"
-                            app:maxValue="10.00"
-                            app:minValue="1.00"
+                            app:maxValue="06.00"
+                            app:minValue="05.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
@@ -341,8 +341,9 @@
                             android:inputType="number"
                             android:maxLength="3"
                             app:mask="##.##"
-                            app:maxValue="06.00"
-                            app:minValue="00.00"
+                            app:defaultValue="99"
+                            app:maxValue="07.00"
+                            app:minValue="01.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
@@ -386,8 +387,9 @@
                             android:inputType="number"
                             android:maxLength="3"
                             app:mask="##.##"
-                            app:maxValue="06.00"
-                            app:minValue="00.00"
+                            app:defaultValue="99"
+                            app:maxValue="07.00"
+                            app:minValue="01.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
