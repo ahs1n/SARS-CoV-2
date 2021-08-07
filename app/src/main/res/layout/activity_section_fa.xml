@@ -572,7 +572,7 @@
                             android:maxLength="3"
                             app:mask="##.##"
                             app:maxValue="10.00"
-                            app:minValue="6.00"
+                            app:minValue="06.00"
                             app:pattern="^(\\d{2,2}\\.\\d{2,2})$"
                             app:type="range" />
                     </LinearLayout>
