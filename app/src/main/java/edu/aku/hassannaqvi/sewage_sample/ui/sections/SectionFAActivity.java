@@ -1,5 +1,8 @@
 package edu.aku.hassannaqvi.sewage_sample.ui.sections;
 
+import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
+import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,9 +33,6 @@ import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.sewage_sample.utils.EndSectionInterface;
 import edu.aku.hassannaqvi.sewage_sample.utils.WarningActivityInterface;
-
-import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
-import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
 
 public class SectionFAActivity extends AppCompatActivity implements EndSectionInterface, WarningActivityInterface {
 
@@ -108,6 +108,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
 
         form.setF1asite(bi.f1asiteA.isChecked() ? "1"
                 : bi.f1asiteB.isChecked() ? "2"
+                : bi.f1asiteC.isChecked() ? "3"
+                : bi.f1asiteD.isChecked() ? "4"
                 : "-1");
 
         form.setF1a01(bi.f1a01.getText().toString());
@@ -228,6 +230,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
                     String[] arrContents = strResult.split("-");
                     bi.f1asiteA.setChecked(arrContents[2].equals("S1"));
                     bi.f1asiteB.setChecked(arrContents[2].equals("S2"));
+                    bi.f1asiteC.setChecked(arrContents[2].equals("S3"));
+                    bi.f1asiteD.setChecked(arrContents[2].equals("S4"));
                 } catch (Exception e) {
                     Toast.makeText(this, "Invalid ID", Toast.LENGTH_SHORT).show();
                     bi.fldGrpCVQR.setVisibility(View.GONE);

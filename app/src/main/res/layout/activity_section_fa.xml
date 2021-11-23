@@ -118,21 +118,31 @@
                             android:id="@+id/f1asiteID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
                             <RadioButton
                                 android:id="@+id/f1asite_a"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="@string/siteID_a" />
 
                             <RadioButton
                                 android:id="@+id/f1asite_b"
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
                                 android:text="@string/siteID_b" />
+
+                            <RadioButton
+                                android:id="@+id/f1asite_c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/siteID_c" />
+
+                            <RadioButton
+                                android:id="@+id/f1asite_d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/siteID_d" />
                         </RadioGroup>
 
                     </LinearLayout>

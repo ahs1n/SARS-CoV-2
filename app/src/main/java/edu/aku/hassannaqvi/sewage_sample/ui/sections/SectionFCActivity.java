@@ -1,5 +1,8 @@
 package edu.aku.hassannaqvi.sewage_sample.ui.sections;
 
+import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
+import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,9 +31,6 @@ import edu.aku.hassannaqvi.sewage_sample.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.sewage_sample.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.sewage_sample.utils.FormState;
 import edu.aku.hassannaqvi.sewage_sample.utils.SimpleCallback;
-
-import static edu.aku.hassannaqvi.sewage_sample.core.MainApp.form;
-import static edu.aku.hassannaqvi.sewage_sample.utils.ActivityExtKt.gotoActivityWithSerializable;
 
 public class SectionFCActivity extends AppCompatActivity implements SimpleCallback<FormState> {
 
@@ -106,6 +106,8 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
         form.setSpecimenID(bi.f1cspecID.getText().toString());
         form.setSiteID(bi.f1csiteA.isChecked() ? "1"
                 : bi.f1csiteB.isChecked() ? "2"
+                : bi.f1csiteC.isChecked() ? "3"
+                : bi.f1csiteD.isChecked() ? "4"
                 : "-1");
 
         form.setF1cspecid(bi.f1cspecID.getText().toString());
@@ -171,6 +173,8 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
                     String[] arrContents = strResult.split("-");
                     bi.f1csiteA.setChecked(arrContents[2].equals("S1"));
                     bi.f1csiteB.setChecked(arrContents[2].equals("S2"));
+                    bi.f1csiteC.setChecked(arrContents[2].equals("S3"));
+                    bi.f1csiteD.setChecked(arrContents[2].equals("S4"));
                 } catch (Exception e) {
                     Toast.makeText(this, "Invalid ID", Toast.LENGTH_SHORT).show();
                     bi.fldGrpCVQRFC.setVisibility(View.GONE);
