@@ -135,6 +135,8 @@ public class SectionFBActivity extends AppCompatActivity implements SimpleCallba
 
         form.setF1bsite(bi.f1bsiteA.isChecked() ? "1"
                 : bi.f1bsiteB.isChecked() ? "2"
+                : bi.f1bsiteC.isChecked() ? "3"
+                : bi.f1bsiteD.isChecked() ? "4"
                 : "-1");
 
         form.setF1b01(bi.f1b01.getText().toString());

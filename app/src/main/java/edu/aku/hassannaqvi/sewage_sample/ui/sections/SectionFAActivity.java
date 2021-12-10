@@ -102,6 +102,8 @@ public class SectionFAActivity extends AppCompatActivity implements EndSectionIn
         form.setSpecimenID(bi.f1aspecID.getText().toString());
         form.setSiteID(bi.f1asiteA.isChecked() ? "1"
                 : bi.f1asiteB.isChecked() ? "2"
+                : bi.f1asiteC.isChecked() ? "3"
+                : bi.f1asiteD.isChecked() ? "4"
                 : "-1");
 
         form.setF1aspecid(bi.f1aspecID.getText().toString());

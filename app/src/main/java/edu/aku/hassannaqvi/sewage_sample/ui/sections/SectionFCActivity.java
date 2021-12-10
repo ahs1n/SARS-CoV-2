@@ -114,6 +114,8 @@ public class SectionFCActivity extends AppCompatActivity implements SimpleCallba
 
         form.setF1csite(bi.f1csiteA.isChecked() ? "1"
                 : bi.f1csiteB.isChecked() ? "2"
+                : bi.f1csiteC.isChecked() ? "3"
+                : bi.f1csiteD.isChecked() ? "4"
                 : "-1");
 
         form.setF1c01(bi.f1c01.getText().toString());
